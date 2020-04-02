@@ -1,5 +1,7 @@
-# JAMstack starter
+# Every Doctor PPE Tracker
 
-This collection of files should serve as a solid starter for any project requiring a static-site front-end with lambda functions on the back-end.
+* [Every Doctor website](https://www.everydoctor.org.uk/)
+* [Public Trello board with project planning](https://trello.com/b/Ff9J6NA8/every-doctor-ppe-tracker)
+* [Fundraising page by Every Doctor](https://actionnetwork.org/fundraising/were-a-group-of-uk-doctors-building-a-coronavirus-research-platform-to-bring-the-facts-to-the-media/)
 
-Deploy to Netlify [using their GUI](https://app.netlify.com/) (or their [CLI tools](https://cli.netlify.com/)) and start developing with hot reloading using `npm start`
+Hosted on Netlify: https://ppe-tracker.netlify.app

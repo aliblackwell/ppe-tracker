@@ -1,8 +1,8 @@
 {
-  "name": "jamstack-starter",
-  "siteTitle": "JAMstack starter",
-  "siteUrl": "https://github.com/aliblackwell/jamstack-starter",
-  "siteSlogan": "Deploying JAMstack sites with ease",
+  "name": "ppe-tracker",
+  "siteTitle": "Every Doctor PPE Tracker",
+  "siteUrl": "https://github.com/aliblackwell/ppe-tracker",
+  "siteSlogan": "***Masks, Gowns, Goggles, Gloves*** Support the campaign to #ProtectNHSWorkers",
   "version": "0.1.0",
   "dependencies": {
     "dotenv-webpack": "^1.7.0",
