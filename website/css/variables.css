@@ -1,0 +1,42 @@
+:root {
+  --text-jumbo: 3rem;
+  --text-large: 1.2rem;
+  --text-medium: 20px;
+  --text-small: 0.8rem;
+  --line-height: 1.2;
+  --box-width: 30rem;
+  --outline-focus: #fafa00;
+
+  --body-font: Arial;
+  --title-font: Garamond;
+
+  --bg-dark-theme: #006060; /* acc */
+  --bg-dark-theme-border: #003d3d;
+  --text-medium-dark-theme: #ffeaeb; /* acc */
+  --text-large-dark-theme: #fff;
+  --text-medium-dark-theme-highlight: #edbec2;
+  --text-large-dark-theme-highlight: #edbec2;
+
+  --bg-light-theme: #FFC0CB;
+  --bg-light-theme-border: #fad8de;
+  --text-medium-light-theme: #003131; /* acc */
+  --text-large-light-theme: #013c3c;
+  --text-medium-light-theme-highlight: #006060;
+  --text-large-light-theme-highlight: #006060;
+}
+/*
+Core breakpoints
+*/
+
+@media (max-width: 900px) {
+  :root {
+    --text-medium: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --text-jumbo: 2.5rem;
+    --text-medium: 16px;
+  }
+}

@@ -1,0 +1,20 @@
+<article class="sharer share-section" aria-live="polite">
+  <button class="ws-semibold smaller" onclick="sharePage()">Share {{config.siteTitle}}</button>
+  <ul aria-hidden="true">
+    <li class="fb">
+      <a class="share-link" data-analytics="share-fb" tabindex="-1" target="_blank" href="https://www.facebook.com/sharer.php?u={{config.siteUrl}}&t={{config.siteSlogan}}">Facebook</a>
+    </li>
+    <li class="tt">
+      <a class="share-link" data-analytics="share-tt" tabindex="-1" target="_blank" href="https://twitter.com/share?text={{config.siteTitle}}: {{config.siteSlogan}}&url={{config.siteUrl}}">Twitter</a>
+    </li>
+    <li class="el">
+      <a class="share-link" data-analytics="share-el" tabindex="-1" target="_blank" href="mailto:?subject=Check out {{config.siteTitle}}&body=You will love this {{config.siteUrl}}">Email</a>
+    </li>
+    <li class="wa wa-desktop">
+      <a class="share-link" data-analytics="share-wa-d" tabindex="-1" target="_blank" href="https://wa.me?text={{config.siteUrl}}">WhatsApp</a>
+    </li>
+    <li class="wa wa-mobile">
+      <a class="share-link" data-analytics="share-wa-m" tabindex="-1" href="whatsapp://send?text={{config.siteUrl}}" data-action="share/whatsapp/share">WhatsApp</a>
+    </li>
+  </ul>
+</article>

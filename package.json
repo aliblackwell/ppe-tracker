@@ -1,0 +1,50 @@
+{
+  "name": "jamstack-starter",
+  "siteTitle": "JAMstack starter",
+  "siteUrl": "https://github.com/aliblackwell/jamstack-starter",
+  "siteSlogan": "Deploying JAMstack sites with ease",
+  "version": "0.1.0",
+  "dependencies": {
+    "dotenv-webpack": "^1.7.0",
+    "express": "^4.17.1",
+    "netlify-cli": "^2.40.0",
+    "netlify-lambda": "^1.6.3",
+    "serverless-http": "^2.3.2"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "dotenv -- cross-var netlify dev",
+    "site:serve": "dotenv -- cross-var npx eleventy --serve",
+    "site:build": "npx eleventy && npm run functions:build",
+    "functions:build": "netlify-lambda build --config ./webpack.functions.js ./functions",
+    "lint": "eslint --fix './tests/*.test.js' './website/*.js' './downloads/*.js' './app/*.html'"
+  },
+  "directories": {
+    "tests": "./tests"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.10.0",
+    "@11ty/eleventy-navigation": "^0.1.5",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^3.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.1",
+    "mocha": "^7.1.1",
+    "prettier": "^2.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./website/js/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
