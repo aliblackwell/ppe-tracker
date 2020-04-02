@@ -1,19 +1,15 @@
 .body-text {
   font-family: var(--body-font), sans-serif;
-  font-weight: 400;
+  font-weight: var(--body-font-weight);
   font-style: normal;
 }
 
 .title-text {
   font-family: var(--title-font), sans-serif;
-  font-weight: 700;
+  font-weight: var(--title-font-weight);
   font-style: normal;
 }
 
-.pre-text {
-  font-weight: 400;
-  font-style: normal;
-}
 
 /*--------------------------------------------------------------
 # Core Typography

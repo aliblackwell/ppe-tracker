@@ -3,10 +3,11 @@ function getSystemTheme() {
   return isDarkMode ? "dark" : "light"
 }
 
+// eslint-disable-next-line
 function checkMode() {
   var mode = getSystemTheme()
   var body = document.getElementsByTagName("body")[0]
-  if (mode === "light") {    
+  if (mode === "light") {
     body.classList.remove("dark")
     body.classList.add("light")
   } else {
@@ -15,13 +16,14 @@ function checkMode() {
   }
 }
 
-checkMode()
+//checkMode()
 
-window.matchMedia("(prefers-color-scheme: dark)").addListener(checkMode)
+//window.matchMedia("(prefers-color-scheme: dark)").addListener(checkMode)
 
 let sharer = document.querySelector(".share-section ul")
 sharer && sharer.classList.add("hidden")
 
+// eslint-disable-next-line
 function sharePage() {
   let isVisible = sharer.classList.contains("hidden")
   let links = document.querySelectorAll(".share-link")

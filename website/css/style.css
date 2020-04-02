@@ -5,4 +5,19 @@
 @import url("./typography.css");
 @import url("./sharer.css");
 
- 
+body {
+  background: var(--bg-light-theme);
+  color: white;
+  text-align: center;
+}
+
+h1.logo {
+  margin: 0 auto;
+}
+.logo a {
+  display: inline-block;
+  width: 10rem;
+}
+ .logo img {
+   padding: 12px;
+ }

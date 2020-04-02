@@ -1,0 +1,21 @@
+{
+  "plugins": ["prettier", "html"],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+
+  "globals": {
+  },
+
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "globalReturn": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+}
