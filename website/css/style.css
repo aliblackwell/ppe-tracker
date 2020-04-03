@@ -47,7 +47,7 @@ article.letter {
   padding: 2rem 3rem;
   background: white;
   color: var(--text-color-dark);
-  box-shadow: 1px 1px 8px 0 rgba(165, 11, 0, 0.3)
+  box-shadow: 1px 1px 8px 0 rgba(165, 11, 0, 0.3);
 }
 
 @media (max-width: 600px) {
@@ -94,3 +94,7 @@ div.feature {
   margin: 0 0.5rem 0 0;
 }
 
+footer a {
+  text-decoration: underline;
+  color: white;
+}
