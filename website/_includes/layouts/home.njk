@@ -15,7 +15,7 @@
 
       <article class="letter">
         <p>Dear Colleague,</p>
-        <p>Will you commit to answering three simple questions every day? If yes, please start now:</p>
+        <p>Will you please answer these three simple questions, and commit to answering them every day?</p>
 
         <form name="onboarding-form" id="onboarding-form" action="/.netlify/functions/handle-onboarding">
           <section class="questions">
@@ -58,13 +58,11 @@
           </section>
 
           <p>Thank you.</p>
-          <p>Please give us your mobile number so we can text you these questions every day. Doing this will enable us to lobby the government on behalf of NHS workers everywhere.</p>
+          <p>Please also provide your mobile number so we can text you these questions every day. Doing this will enable us to lobby the government on behalf of NHS workers everywhere.</p>
 
           <section class="questions">
-          <fieldset class="radios">
-            <legend>
-              Mobile number</legend>
-            <label for="area-code">Area code</label>
+
+            <label for="area-code" class="screen-reader-text">Area code</label>
             <select id="area-code" name="area-code">
               <option value="+44" selected="selected">+44</option>
 
@@ -74,11 +72,45 @@
             </select>
             <label for="phone">Mobile number</label>
             <input name="phone" id="phone" type="number">
-          </fieldset>
+
           </section>
 
-          <p>Finally, please let us know a bit about you, including where you work, so we can perform detailed analysis and see where any gaps are across the NHS.</p>
+          <p>We need to know where you work so we can see any gaps are across the NHS.</p>
 
+          <section class="questions">
+            <aside class="privacy">
+              {% include 'partials/privacy-lock.njk' %}
+              Everything you submit is stored separately from your phone number, or anything else that could be used to identify you.</aside>
+            <label for="trust">Your local NHS Trust</label>
+            <input type="text" id="trust"/>
+            <label for="hospital">Hospital</label>
+            <input type="text" id="hospital"/>
+            <label for="department">Department</label>
+            <input type="text" id="department"/>
+          </section>
+
+          <p>Optionally, please provide a few pieces of personal information. This will allow us to perform more detailed analysis.</p>
+          <section class="questions">
+            <aside class="privacy">
+              {% include 'partials/privacy-lock.njk' %}
+              These fields are optional, and whilst they are not stored alongside your phone number, they could be combined with your place of work to identify you.
+            </aside>
+            <label for="gender">Your gender</label>
+            <input type="text" id="gender"/>
+            <label for="nationality">Your nationality</label>
+            <input type="text" id="nationality"/>
+            <label for="job-title">Your job title</label>
+            <input type="text" id="job-title"/>
+          </section>
+          <p>Finally, please provide your email if you would like to sign up to our mailing list.</p>
+          <section class="questions">
+            <input type="checkbox" name="signup" id="signup"/>
+            <label for="signup">I consent to receive emails from EveryDoctor</label>
+            <label for="email">Your email</label>
+            <input type="email" name="email" id="email">
+          </section>
+          <p>By submitting this form, you are consenting to EveryDoctor using your information – both that provided today and in future over SMS – for the purpose of lobbying government to provide adequate PPE across the whole NHS.</p>
+          <p>Thank you so much</p>
           <button>Submit</button>
         </form>
       </article>

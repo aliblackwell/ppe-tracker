@@ -4,7 +4,7 @@
   font-style: normal;
 }
 
-.title-text {
+.title-text, label, legend {
   font-family: var(--title-font), sans-serif;
   letter-spacing: 1px;
   font-weight: var(--title-font-weight);
@@ -17,7 +17,6 @@
 --------------------------------------------------------------*/
 
 body,
-label,
 select,
 option,
 li,

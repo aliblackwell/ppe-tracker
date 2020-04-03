@@ -23,6 +23,11 @@ h1.logo {
    padding: 12px;
  }
 
+ p.hashtag {
+   margin: 0.5rem auto 2.5rem auto;
+   line-height: 1;
+ }
+
 .content {
   width: var(--box-width);
   max-width: 100%;
@@ -31,6 +36,8 @@ h1.logo {
 
 .questions {
   padding: 1rem;
+  width: 110%;
+  margin-left: -5%;
   margin-bottom: 1.5em;
   border: 2px solid var(--light-button-bg);
 }
@@ -40,6 +47,7 @@ article.letter {
   padding: 2rem 3rem;
   background: white;
   color: var(--text-color-dark);
+  box-shadow: 1px 1px 8px 0 rgba(165, 11, 0, 0.3)
 }
 
 @media (max-width: 600px) {
@@ -70,3 +78,19 @@ div.feature {
   background: white;
   padding: 1rem;
 }
+
+.privacy {
+  margin: 0;
+  margin-bottom: 1.5rem;
+  font-size: var(--text-small);
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background: var(--bg-feature);
+  border: dashed 1px var( --light-button-bg);
+}
+
+.privacy svg {
+  float: left;
+  width: 2rem;
+  margin: 0 0.5rem 0 0;
+}
+
