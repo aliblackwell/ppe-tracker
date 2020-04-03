@@ -1,11 +1,11 @@
 :root {
-  --text-jumbo: 3rem;
+  --text-jumbo: 2rem;
   --text-large: 1.2rem;
   --text-medium: 20px;
   --text-small: 0.8rem;
   --line-height: 1.2;
   --box-width: 30rem;
-  --outline-focus: #fafa00;
+  --outline-focus: #02042f;
 
   --body-font: neue-haas-unica;
   --body-font-weight: 400;
@@ -22,6 +22,9 @@
   --text-large-light-theme: #013c3c;
   --text-medium-light-theme-highlight: #006060;
   --text-large-light-theme-highlight: #006060;
+
+  --text-color-dark: rgb(2, 4, 47);
+  --bg-feature: #ffff03;
 
 
   --bg-dark-theme: rgb(255, 75, 62); /* acc */

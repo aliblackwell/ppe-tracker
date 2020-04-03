@@ -1,20 +1,94 @@
 <!DOCTYPE html>
+
 <head>
   {% include 'partials/head-default.njk' %}
   {% include 'partials/meta-tags-default.njk' %}
 </head>
+
 <body class="home">
   <main class="container">
     <header class="banner">
-      {% include 'partials/nav.njk' %}
+      {% include 'partials/logo.njk' %}
     </header>
-    <section>
+    <section class="content">
+      <p class="hashtag title-text">#ProtectNHSworkers</p>
 
+      <article class="letter">
+        <p>Dear Colleague,</p>
+        <p>Will you commit to answering three simple questions every day? If yes, please start now:</p>
+
+        <form name="onboarding-form" id="onboarding-form" action="/.netlify/functions/handle-onboarding">
+          <section class="questions">
+            <div class="question">
+              <img alt="1" src="/img/one.svg"/>
+              <fieldset class="radios">
+                <legend>
+                  I am equipped with adequate PPE, in line with WHO guidelines.
+                </legend>
+                <input id="question-1-yes" type="radio" value="yes" name="question-1"/>
+                <label for="question-1-yes">Yes</label>
+                <input id="question-1-no" type="radio" value="no" name="question-1"/>
+                <label for="question-1-no">No</label>
+              </fieldset>
+            </div>
+            <div class="question">
+              <img alt="2" src="/img/two.svg"/>
+              <fieldset class="radios">
+                <legend>
+                  I am equipped with adequate PPE, in line with WHO guidelines.
+                </legend>
+                <input id="question-2-yes" type="radio" value="yes" name="question-2"/>
+                <label for="question-2-yes">Yes</label>
+                <input id="question-2-no" type="radio" value="no" name="question-2"/>
+                <label for="question-2-no">No</label>
+              </fieldset>
+            </div>
+            <div class="question">
+              <img alt="3" src="/img/three.svg"/>
+              <fieldset class="radios">
+                <legend>
+                  I am equipped with adequate PPE, in line with WHO guidelines.
+                </legend>
+                <input id="question-3-yes" type="radio" value="yes" name="question-3"/>
+                <label for="question-3-yes">Yes</label>
+                <input id="question-3-no" type="radio" value="no" name="question-3"/>
+                <label for="question-3-no">No</label>
+              </fieldset>
+            </div>
+          </section>
+
+          <p>Thank you.</p>
+          <p>Please give us your mobile number so we can text you these questions every day. Doing this will enable us to lobby the government on behalf of NHS workers everywhere.</p>
+
+          <section class="questions">
+          <fieldset class="radios">
+            <legend>
+              Mobile number</legend>
+            <label for="area-code">Area code</label>
+            <select id="area-code" name="area-code">
+              <option value="+44" selected="selected">+44</option>
+
+              {% for country in countrycodes | orderAscending %}
+                <option value="{{country.dial_code}}">{{country.dial_code}}</option>
+              {% endfor %}
+            </select>
+            <label for="phone">Mobile number</label>
+            <input name="phone" id="phone" type="number">
+          </fieldset>
+          </section>
+
+          <p>Finally, please let us know a bit about you, including where you work, so we can perform detailed analysis and see where any gaps are across the NHS.</p>
+
+          <button>Submit</button>
+        </form>
+      </article>
     </section>
     <footer class="wide theme">
       {% include 'partials/footer.njk' %}
     </footer>
   </main>
-  {% include 'partials/global-js.njk' %}  
+  {% include 'partials/global-js.njk' %}
+  <script src="/js/onboarding-form.js"></script>
 </body>
+
 </html>

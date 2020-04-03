@@ -19,5 +19,54 @@ h1.logo {
   width: 10rem;
 }
  .logo img {
+   margin-top: 0.5rem;
    padding: 12px;
  }
+
+.content {
+  width: var(--box-width);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.questions {
+  padding: 1rem;
+  margin-bottom: 1.5em;
+  border: 2px solid var(--light-button-bg);
+}
+
+article.letter {
+  text-align: left;
+  padding: 2rem 3rem;
+  background: white;
+  color: var(--text-color-dark);
+}
+
+@media (max-width: 600px) {
+  article.letter {
+    padding: 1rem 1.5rem;
+  }
+}
+
+.question {
+  margin-bottom: 1rem;
+}
+.question:last-child {
+  margin-bottom: 0;
+}
+
+.question img {
+  width: 4rem;
+  margin-right: 0.4rem;
+  float: left;
+}
+
+fieldset {
+  border: none;
+  background: none;
+}
+
+div.feature {
+  background: white;
+  padding: 1rem;
+}

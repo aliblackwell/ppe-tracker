@@ -5,17 +5,23 @@
   "siteSlogan": "***Masks, Gowns, Goggles, Gloves*** Support the campaign to #ProtectNHSWorkers",
   "version": "0.1.0",
   "dependencies": {
+    "@cloudant/cloudant": "^4.2.4",
     "dotenv-webpack": "^1.7.0",
     "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "multer": "^1.4.2",
     "netlify-cli": "^2.40.0",
     "netlify-lambda": "^1.6.3",
-    "serverless-http": "^2.3.2"
+    "serverless-http": "^2.3.2",
+    "twilio": "^3.42.0"
   },
   "scripts": {
     "test": "mocha",
+    "cloudant": "dotenv -- cross-var node ./cloudant-test.js",
     "start": "dotenv -- cross-var netlify dev",
     "site:serve": "dotenv -- cross-var npx eleventy --serve",
     "site:build": "npx eleventy && npm run functions:build",
+    "functions:serve": "dotenv -- cross-var netlify-lambda serve --config ./webpack.functions.js ./functions",
     "functions:build": "netlify-lambda build --config ./webpack.functions.js ./functions",
     "lint": "eslint --fix './tests/*.test.js' './website/*.js' './downloads/*.js' './app/*.html'"
   },

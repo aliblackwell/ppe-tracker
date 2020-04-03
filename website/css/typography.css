@@ -6,6 +6,7 @@
 
 .title-text {
   font-family: var(--title-font), sans-serif;
+  letter-spacing: 1px;
   font-weight: var(--title-font-weight);
   font-style: normal;
 }
@@ -53,7 +54,8 @@ h5,
 h6 {
   clear: both;
   font-family: var(--title-font), sans-serif;
-  font-weight: 700;
+  letter-spacing: 1px;
+  font-weight: var(--title-font-weight);
   font-style: normal;
 }
 
@@ -107,8 +109,9 @@ blockquote {
 blockquote::before {
   content: '“';
   font-family: var(--title-font);
+  letter-spacing: 1px;
   line-height: 0.5;
-  font-weight: 700;
+  font-weight: var(--title-font-weight);
   font-size: 6rem;
   position: absolute;
   top: 0;

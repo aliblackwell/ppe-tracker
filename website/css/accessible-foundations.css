@@ -1,15 +1,11 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
-
 html {
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
-
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   box-sizing: inherit;
 }
+
 
 img {
   max-width: 100%;
@@ -64,7 +60,7 @@ img {
 
 *:focus {
   outline: none;
-  box-shadow: 2px 2px 0px 10px var(--outline-focus) !important;
+  box-shadow: 0px 0px 0px 2px var(--outline-focus) !important;
 }
 
 /*--------------------------------------------------------------
