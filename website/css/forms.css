@@ -102,16 +102,17 @@ form textarea {
   border: 0;
 }
 
-
-input[type=text], input[type=number], input[type=email] {
+input[type="text"],
+input[type="number"],
+input[type="email"] {
   border: 2px solid var(--light-button-bg);
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   width: 1.5rem;
   float: left;
   transform: scale(1.2);
-  top:0.5rem;
+  top: 0.5rem;
   position: relative;
 }
 .inline-form {
@@ -158,10 +159,6 @@ form textarea {
   min-height: 15rem;
 }
 
-form label {
-  margin-left: 0.5rem;;
-}
-
 form input,
 form button,
 form textarea {
@@ -191,7 +188,6 @@ input[type="radio"] {
   background-color: #dfd;
 }
 
-
 .radios input[type="radio"]:focus + label {
   border: 2px dashed #444;
 }
@@ -199,4 +195,13 @@ input[type="radio"] {
 .radios input[type="radio"]:checked + label {
   background-color: #bfb;
   border-color: #4c4;
+}
+
+.msg {
+  display: block;
+  border-bottom: 5px solid var(--bg-dark-theme-border);
+  margin-bottom: 1rem;
+  color: var(--bg-light-theme);
+  font-family: var(--title-font);
+  font-weight: 700;
 }

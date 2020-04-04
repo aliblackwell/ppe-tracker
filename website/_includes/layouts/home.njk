@@ -15,104 +15,143 @@
 
       <article class="letter">
         <p>Dear Colleague,</p>
-        <p>Will you please answer these three simple questions, and commit to answering them every day?</p>
 
-        <form name="onboarding-form" id="onboarding-form" action="/.netlify/functions/handle-onboarding">
-          <section class="questions">
-            <div class="question">
-              <img alt="1" src="/img/one.svg"/>
-              <fieldset class="radios">
-                <legend>
-                  I am equipped with adequate PPE, in line with WHO guidelines.
-                </legend>
-                <input id="question-1-yes" type="radio" value="yes" name="question-1"/>
-                <label for="question-1-yes">Yes</label>
-                <input id="question-1-no" type="radio" value="no" name="question-1"/>
-                <label for="question-1-no">No</label>
-              </fieldset>
-            </div>
-            <div class="question">
-              <img alt="2" src="/img/two.svg"/>
-              <fieldset class="radios">
-                <legend>
-                  I am equipped with adequate PPE, in line with WHO guidelines.
-                </legend>
-                <input id="question-2-yes" type="radio" value="yes" name="question-2"/>
-                <label for="question-2-yes">Yes</label>
-                <input id="question-2-no" type="radio" value="no" name="question-2"/>
-                <label for="question-2-no">No</label>
-              </fieldset>
-            </div>
-            <div class="question">
-              <img alt="3" src="/img/three.svg"/>
-              <fieldset class="radios">
-                <legend>
-                  I am equipped with adequate PPE, in line with WHO guidelines.
-                </legend>
-                <input id="question-3-yes" type="radio" value="yes" name="question-3"/>
-                <label for="question-3-yes">Yes</label>
-                <input id="question-3-no" type="radio" value="no" name="question-3"/>
-                <label for="question-3-no">No</label>
-              </fieldset>
-            </div>
-          </section>
+        <div class="loading hidden" aria-hidden="true">
+          <div class="sk-fading-circle" role="presentation">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+          </div>Loading</div>
 
-          <p>Thank you.</p>
-          <p>Please also provide your mobile number so we can text you these questions every day. Doing this will enable us to lobby the government on behalf of NHS workers everywhere.</p>
+        <section class="messages hidden" aria-hidden="true">
+          <h1>Unable to submit the form</h1>
+          <p>Please check the below and try again:</p>
+          <ul id="error-list"></ul>
+        </section>
 
-          <section class="questions">
+        <div class="submission-success hidden" aria-hidden="true">
+          <p>Thank you so much for joining our campaign.</p>
+          <p>Please do share this tool with colleagues:</p>
+          {% include 'partials/sharer.njk' %}
+          <p>We will text you soon. Please text back!</p>
+          <p>All best wishes,</p>
+          <p>
+            <strong>Dr Julia Patterson,</strong><br/>
+            EveryDoctor lead
+          </p>
+        </div>
 
-            <label for="area-code" class="screen-reader-text">Area code</label>
-            <select id="area-code" name="area-code">
-              <option value="+44" selected="selected">+44</option>
+        <div class="form-wrapper" aria-hidden="false">
+          <p>Will you please answer these three simple questions, and commit to answering them every day?</p>
 
-              {% for country in countrycodes | orderAscending %}
-                <option value="{{country.dial_code}}">{{country.dial_code}}</option>
-              {% endfor %}
-            </select>
-            <label for="phone">Mobile number</label>
-            <input name="phone" id="phone" type="number">
+          <form name="onboarding-form" id="onboarding-form" action="/.netlify/functions/handle-onboarding" novalidate="novalidate">
+            <section class="questions">
+              <div class="question" id="question-one">
+                <img alt="1" src="/img/one.svg"/>
+                <fieldset class="radios">
+                  <legend>
+                    I am equipped with adequate PPE, in line with WHO guidelines.
+                  </legend>
+                  <div id="answer-one" data-parent="question-one">
+                    <input id="question-1-yes" type="radio" value="yes" name="answer-one"/>
+                    <label for="question-1-yes">Yes</label>
+                    <input id="question-1-no" type="radio" value="no" name="answer-one"/>
+                    <label for="question-1-no">No</label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="question" id="question-two">
+                <img alt="2" src="/img/two.svg"/>
+                <fieldset class="radios">
+                  <legend>
+                    I am equipped with adequate PPE, in line with WHO guidelines.
+                  </legend>
+                  <div id="answer-two" data-parent="question-two">
+                    <input id="question-2-yes" type="radio" value="yes" name="answer-two"/>
+                    <label for="question-2-yes">Yes</label>
+                    <input id="question-2-no" type="radio" value="no" name="answer-two"/>
+                    <label for="question-2-no">No</label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="question" id="question-three">
+                <img alt="3" src="/img/three.svg"/>
+                <fieldset class="radios">
+                  <legend>
+                    I am equipped with adequate PPE, in line with WHO guidelines.
+                  </legend>
+                  <div id="answer-three" data-parent="question-three">
+                    <input id="question-3-yes" type="radio" value="yes" name="answer-three"/>
+                    <label for="question-3-yes">Yes</label>
+                    <input id="question-3-no" type="radio" value="no" name="answer-three"/>
+                    <label for="question-3-no">No</label>
+                  </div>
+                </fieldset>
+              </div>
+            </section>
 
-          </section>
+            <p>Thank you.</p>
+            <p>Please also provide your mobile number so we can text you these questions every day. Doing this will enable us to lobby the government on behalf of NHS workers everywhere.</p>
 
-          <p>We need to know where you work so we can see where any gaps are across the NHS.</p>
+            <section class="questions" id="mobile-number">
 
-          <section class="questions">
-            <aside class="privacy">
-              {% include 'partials/privacy-lock.njk' %}
-              Everything you submit is stored separately from your phone number, or anything else that could be used to identify you.</aside>
-            <label for="trust">Your local NHS Trust</label>
-            <input type="text" id="trust"/>
-            <label for="hospital">Hospital</label>
-            <input type="text" id="hospital"/>
-            <label for="department">Department</label>
-            <input type="text" id="department"/>
-          </section>
+              <label for="area-code" class="screen-reader-text">Area code</label>
+              <select id="area-code" name="area-code" data-parent="mobile-number">
+                <option value="+44" selected="selected">+44</option>
 
-          <p>Optionally, please provide a few pieces of personal information. This will allow us to perform more detailed analysis.</p>
-          <section class="questions">
-            <aside class="privacy">
-              {% include 'partials/privacy-lock.njk' %}
-              These fields are optional, and whilst they are not stored alongside your phone number, they could be combined with your place of work to identify you.
-            </aside>
-            <label for="gender">Your gender</label>
-            <input type="text" id="gender"/>
-            <label for="nationality">Your nationality</label>
-            <input type="text" id="nationality"/>
-            <label for="job-title">Your job title</label>
-            <input type="text" id="job-title"/>
-          </section>
-          <p>Finally, please provide your email if you would like to sign up to our mailing list.</p>
-          <section class="questions">
-            <input type="checkbox" name="signup" id="signup"/>
-            <label for="signup">I consent to receive emails from EveryDoctor</label>
-            <label for="email">Your email</label>
-            <input type="email" name="email" id="email">
-          </section>
-          <p>By submitting this form, you are consenting to EveryDoctor using your responses for the purpose of lobbying government to provide adequate PPE across the whole NHS.</p>
-          <p>Thank you so much.</p>
-          <button>Submit</button>
-        </form>
+                {% for country in countrycodes | orderAscending %}
+                  <option value="{{country.dial_code}}">{{country.dial_code}}</option>
+                {% endfor %}
+              </select>
+              <label for="phone">Mobile number</label>
+              <input name="phone" id="phone" type="number" data-parent="mobile-number">
+
+            </section>
+
+            <p>We need to know where you work so we can see where any gaps are across the NHS.</p>
+
+            <section class="questions" id="medical-details">
+              <aside class="privacy">
+                {% include 'partials/privacy-lock.njk' %}
+                Everything you submit is stored separately from your phone number, or anything else that could be used to identify you.</aside>
+              <label for="hospital">Your local NHS Trust or CCG</label>
+              <input type="text" id="hospital" name="hospital" data-parent="medical-details"/>
+            </section>
+
+            <p>Optionally, please provide a few pieces of personal information. This will allow us to perform more detailed analysis.</p>
+            <section class="questions">
+              <aside class="privacy">
+                {% include 'partials/privacy-lock.njk' %}
+                These fields are optional, and whilst they are not stored alongside your phone number, they could be combined with your place of work to identify you.
+              </aside>
+              <label for="gender">Your gender</label>
+              <input type="text" id="gender" name="gender"/>
+              <label for="nationality">Your nationality</label>
+              <input type="text" id="nationality" name="nationality"/>
+              <label for="job-title">Your job title</label>
+              <input type="text" id="job-title" name="job-title"/>
+            </section>
+            <p>Finally, please provide your email if you would like to sign up to our mailing list.</p>
+            <section class="questions">
+              <input type="checkbox" name="signup" id="signup"/>
+              <label for="signup">I consent to receive emails from EveryDoctor</label>
+              <label for="email">Your email</label>
+              <input type="email" name="email" id="email">
+            </section>
+            <p>By submitting this form, you are consenting to EveryDoctor using your responses for the purpose of lobbying government to provide adequate PPE across the whole NHS.</p>
+            <p>Thank you so much.</p>
+            <button>Submit</button>
+          </form>
+        </div>
       </article>
     </section>
     <footer class="wide theme">
