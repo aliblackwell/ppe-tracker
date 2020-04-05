@@ -5,7 +5,7 @@ var multer = require("multer") // required for handling FormData objects
 var upload = multer()
 
 const crypto = require("crypto")
-const { body, validationResult } = require("express-validator")
+const { body, validationResult, check } = require("express-validator")
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // support encoded bodies
@@ -15,49 +15,61 @@ const cloudant = Cloudant(
 )
 const db = cloudant.db.use("participants")
 
-function formatPhone(ac, phone) {
-  let phoneNoZero = parseInt(phone)
-  let cleanPhone = phoneNoZero.toString().replace(/ /g, "")
+function formatMobile(ac, mobile) {
+  let mobileNoZero = parseInt(mobile)
+  let cleanMobile = mobileNoZero.toString().replace(/ /g, "")
   let cleanAc = ac.toString().replace(/ /g, "")
-  return `${cleanAc}${cleanPhone}`
+  return `${cleanAc}${cleanMobile}`
 }
 
-function validateAnswer(answer){
-  return body(answer).not().isEmpty().withMessage('Please answer the question.')
+function validateAnswer(answer) {
+  return body(answer).not().isEmpty().withMessage("Please answer the question.")
 }
 
 function fieldRequired(field) {
-  return body(field).not().isEmpty().withMessage('This field is required.')
+  return body(field).not().isEmpty().withMessage("This field is required.")
 }
 
 app.post(
-  "*", 
+  "*",
   [
     upload.none(), // enable req.body.{form[name]} below using multer
-    validateAnswer('answer-one'),
-    validateAnswer('answer-two'),
-    validateAnswer('answer-three'),
-    fieldRequired('area-code'),
-    fieldRequired('phone'),
-    fieldRequired('hospital')
+    validateAnswer("answer-one"),
+    validateAnswer("answer-two"),
+    validateAnswer("answer-three"),
+    body("area-code").not().isEmpty().withMessage("Please select an area code."),
+    check("mobile", "We need your mobile to regularly text you the questions.")
+      .not()
+      .isEmpty()
+      .withMessage("We need your mobile to text you the questions.")
+      .isLength({ min: 10 })
+      .withMessage("This number is not long enough.")
+      .not()
+      .contains("+")
+      .withMessage("Please remove the area code."),
+
+    fieldRequired("hospital"),
+    fieldRequired("gmc-number"),
+    fieldRequired("grade"),
+    fieldRequired("specialty"),
   ],
   async (req, res, next) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() })
+      return res.status(422).json({ errors: errors.array({ onlyFirstError: true }) })
     }
 
-    const phone = formatPhone(req.body["area-code"], req.body.phone)
+    const mobile = formatMobile(req.body["area-code"], req.body.mobile)
 
     const identifibleHash = crypto
       .createHmac("sha256", process.env.SALT_ONE)
-      .update(phone)
+      .update(mobile)
       .digest("hex")
 
     const anonymousHash = crypto
       .createHmac("sha256", process.env.SALT_TWO)
-      .update(phone)
+      .update(mobile)
       .digest("hex")
 
     const timeBaseIdentifier = crypto
@@ -67,7 +79,7 @@ app.post(
 
     const mobiles = {
       _id: `mobiles:${identifibleHash}`,
-      phone,
+      mobile,
     }
 
     const user = {

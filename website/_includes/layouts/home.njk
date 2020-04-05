@@ -59,7 +59,7 @@
                 <img alt="1" src="/img/one.svg"/>
                 <fieldset class="radios">
                   <legend>
-                    I am equipped with adequate PPE, in line with WHO guidelines.
+                    I have access to a mask today.
                   </legend>
                   <div id="answer-one" data-parent="question-one">
                     <input id="question-1-yes" type="radio" value="yes" name="answer-one"/>
@@ -73,7 +73,7 @@
                 <img alt="2" src="/img/two.svg"/>
                 <fieldset class="radios">
                   <legend>
-                    I am equipped with adequate PPE, in line with WHO guidelines.
+                    I have access to gloves and a gown.
                   </legend>
                   <div id="answer-two" data-parent="question-two">
                     <input id="question-2-yes" type="radio" value="yes" name="answer-two"/>
@@ -87,7 +87,7 @@
                 <img alt="3" src="/img/three.svg"/>
                 <fieldset class="radios">
                   <legend>
-                    I am equipped with adequate PPE, in line with WHO guidelines.
+                    Covid-19 testing is available to me.
                   </legend>
                   <div id="answer-three" data-parent="question-three">
                     <input id="question-3-yes" type="radio" value="yes" name="answer-three"/>
@@ -100,52 +100,76 @@
             </section>
 
             <p>Thank you.</p>
-            <p>Please also provide your mobile number so we can text you these questions every day. Doing this will enable us to lobby the government on behalf of NHS workers everywhere.</p>
+            <p>Please also provide your mobile number so we can text you these questions every day, and your GMC number, so we know you're a doctor.</p>
 
             <section class="questions" id="mobile-number">
+              <fieldset>
+                <legend>
+                  Mobile number
+                </legend>
+                <div class="aligned-flex">
+                  <div class="flex-item">
+                    <label for="area-code" class="screen-reader-text">Area code</label>
+                    <div class="styled-select mobile">
+                      <select id="area-code" name="area-code" data-parent="mobile-number">
+                        <option value="+44" selected="selected">+44</option>
 
-              <label for="area-code" class="screen-reader-text">Area code</label>
-              <select id="area-code" name="area-code" data-parent="mobile-number">
-                <option value="+44" selected="selected">+44</option>
-
-                {% for country in countrycodes | orderAscending %}
-                  <option value="{{country.dial_code}}">{{country.dial_code}}</option>
-                {% endfor %}
-              </select>
-              <label for="phone">Mobile number</label>
-              <input name="phone" id="phone" type="number" data-parent="mobile-number">
-
+                        {% for country in countrycodes | orderAscending %}
+                          <option value="{{country.dial_code}}">{{country.dial_code}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="flex-item mobile-input-wrapper">
+                    <label for="mobile" class="screen-reader-text">Mobile number</label>
+                    <input name="mobile" id="mobile" type="tel" data-parent="mobile-number">
+                  </div>
+                </div>
+              </fieldset>
+              <div id="gmc-number-container">
+                <label for="gmc-number">GMC number</label>
+                <input name="gmc-number" id="gmc-number" type="tel" data-parent="gmc-number-container">
+              </div>
             </section>
 
             <p>We need to know where you work so we can see where any gaps are across the NHS.</p>
+            <p>This information will enable us to lobby the government effectively on behalf of NHS workers everywhere.</p>
 
             <section class="questions" id="medical-details">
               <aside class="privacy">
                 {% include 'partials/privacy-lock.njk' %}
-                Everything you submit is stored separately from your phone number, or anything else that could be used to identify you.</aside>
+                Your answers and the following information are stored separately from your phone and GMC numbers, effectively anonymising your responses.</aside>
               <label for="hospital">Your local NHS Trust or CCG</label>
               <input type="text" id="hospital" name="hospital" data-parent="medical-details"/>
+              <div id="grade-container">
+                <label for="grade">Your grade</label>
+                <div class="styled-select">
+                  <select id="grade" name="grade" data-parent="grade-container">
+                    <option value="" selected="selected">Please select</option>
+                    {% for grade in grades %}
+                      <option value="{{grade}}">{{grade}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div id="specialty-container">
+                <label for="specialty">Your specialty</label>
+                <input type="text" id="specialty" name="specialty" data-parent="specialty-container"/>
+              </div>
             </section>
 
-            <p>Optionally, please provide a few pieces of personal information. This will allow us to perform more detailed analysis.</p>
+            <p>Finally, please provide your name and email if you would like to sign up to our mailing list.</p>
             <section class="questions">
-              <aside class="privacy">
-                {% include 'partials/privacy-lock.njk' %}
-                These fields are optional, and whilst they are not stored alongside your phone number, they could be combined with your place of work to identify you.
-              </aside>
-              <label for="gender">Your gender</label>
-              <input type="text" id="gender" name="gender"/>
-              <label for="nationality">Your nationality</label>
-              <input type="text" id="nationality" name="nationality"/>
-              <label for="job-title">Your job title</label>
-              <input type="text" id="job-title" name="job-title"/>
-            </section>
-            <p>Finally, please provide your email if you would like to sign up to our mailing list.</p>
-            <section class="questions">
-              <input type="checkbox" name="signup" id="signup"/>
-              <label for="signup">I consent to receive emails from EveryDoctor</label>
+
+              <label for="first-name">Your first name</label>
+              <input type="text" name="first-name" id="first-name">
+              <label for="surname">Your surname</label>
+              <input type="text" name="surname" id="surname">
+
               <label for="email">Your email</label>
               <input type="email" name="email" id="email">
+              <input type="checkbox" name="signup" id="signup"/>
+              <label for="signup">I consent to receive emails from EveryDoctor</label>
             </section>
             <p>By submitting this form, you are consenting to EveryDoctor using your responses for the purpose of lobbying government to provide adequate PPE across the whole NHS.</p>
             <p>Thank you so much.</p>
@@ -159,7 +183,12 @@
     </footer>
   </main>
   {% include 'partials/global-js.njk' %}
-  <script src="/js/onboarding-form.js"></script>
+  <script src="/js/auto-complete.js"></script>
+  <script>
+    const grades = [{% for grade in grades %}"{{grade}}",{% endfor %}]
+    const hospitals = [{% for hospital in hospitals %}"{{hospital}}",{% endfor %}]
+  </script>
+  <script src="/js/onboarding-form.js "></script>
 </body>
 
 </html>

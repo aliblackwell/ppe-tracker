@@ -84,28 +84,30 @@ form textarea {
   /* For Windows high contrast mode. */
 }
 
-form label {
+form label, legend {
   display: block;
   font-size: var(--text-medium);
   margin-bottom: 0.5rem;
+  padding: 0;
 }
 
 form input,
 form textarea {
   padding: 0.5rem 1rem;
   border-radius: 7px;
-  margin-right: 10px;
-  width: 100%;
-  width: 65%;
   margin-bottom: 1rem;
   box-shadow: none;
   border: 0;
 }
 
 input[type="text"],
-input[type="number"],
+input[type="tel"],
 input[type="email"] {
   border: 2px solid var(--light-button-bg);
+}
+
+form input:last-child {
+  margin-bottom: 0;
 }
 
 input[type="checkbox"] {
@@ -204,4 +206,65 @@ input[type="radio"] {
   color: var(--bg-light-theme);
   font-family: var(--title-font);
   font-weight: 700;
+}
+
+.styled-select {
+  height: auto;
+  overflow: hidden;
+  padding: 0;
+  background: url(/img/down-arrow.svg) no-repeat bottom right #fff;
+  border: 2px solid var(--light-button-bg);
+  border-radius: 7px;
+  min-width: 6rem;
+  margin-bottom: 1.5rem;
+}
+
+.styled-select.mobile {
+  margin-bottom: 0;
+}
+ 
+
+.styled-select select {
+  background: transparent;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: var(--text-large);
+  line-height: 1;
+  border: 0;
+  border-radius: 0;
+  height: auto;
+  -webkit-appearance: none;
+}
+
+input#mobile {
+ 
+  margin-right: none;
+  margin-left: auto;
+}
+
+.aligned-flex {
+  display: flex;
+  align-items: top;
+  justify-content: left;
+  margin-bottom: 1.5rem;
+}
+
+.flex-item {
+  display: grid;
+}
+
+.mobile-input-wrapper {
+  width: 100%;
+  margin-left: 1rem;
+}
+
+.flex-item input {
+  margin-bottom: 0;
+  width: 100%;
+ 
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
 }
