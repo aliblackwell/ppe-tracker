@@ -17,17 +17,17 @@ var hospital1 = new autoComplete({
   },
 })
 
-// var grade1 = new autoComplete({
-//   selector: '#grade',
-//   minChars: 1,
-//   source: function(term, suggest){
-//       term = term.toLowerCase();
-//       var suggestions = [];
-//       for (i=0;i<grades.length;i++)
-//           if (~grades[i].toLowerCase().indexOf(term)) suggestions.push(grades[i]);
-//       suggest(suggestions);
-//   }
-// });
+var grade1 = new autoComplete({
+  selector: '#specialty',
+  minChars: 1,
+  source: function(term, suggest){
+      term = term.toLowerCase();
+      var suggestions = [];
+      for (i=0;i<specialties.length;i++)
+          if (~specialties[i].toLowerCase().indexOf(term)) suggestions.push(specialties[i]);
+      suggest(suggestions);
+  }
+});
 
 function showEl(el) {
   el.classList.remove("hidden")
