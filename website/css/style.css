@@ -24,6 +24,17 @@ h1.logo {
    padding: 12px;
  }
 
+ a.more-info {
+   color: white;
+   text-decoration: underline;
+   font-family: var(--title-font);
+   font-weight: var(--title-font-weight);
+   letter-spacing: 1px;
+  font-size: var(--text-small);
+  margin: 0 auto 1rem auto;
+  display: inline-block;
+ }
+
  p.hashtag {
    margin: 0.5rem auto 2.5rem auto;
    line-height: 1;
@@ -85,8 +96,9 @@ div.feature {
   margin-bottom: 1.5rem;
   font-size: var(--text-small);
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-  background: var(--bg-feature);
-  border: dashed 1px var( --light-button-bg);
+  color: white;
+  background: var( --light-button-bg);
+  border: none;
 }
 
 .privacy svg {
@@ -255,4 +267,16 @@ footer a {
 @keyframes sk-circleFadeDelay {
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; } 
+}
+
+label.link {
+  font-family: var(--body-font);
+  font-weight: 400;
+}
+
+label.link a {
+  text-decoration: underline;
+  color: var(--bg-light-theme);
+  font-family: var(--title-font);
+  font-weight: var(--title-font-weight);
 }

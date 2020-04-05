@@ -9,6 +9,7 @@
   <main class="container">
     <header class="banner">
       {% include 'partials/logo.njk' %}
+
     </header>
     <section class="content">
       <p class="hashtag title-text">#ProtectNHSworkers</p>
@@ -51,7 +52,9 @@
         </div>
 
         <div class="form-wrapper" aria-hidden="false">
-          <p>Will you please answer these three simple questions, and commit to answering them every day?</p>
+          <p>We're collecting real-time data from medics so that we can advocate for the safety of all NHS staff and our patients.</p>
+          <p>Will you commit to answering three simple questions regularly?
+          </p>
 
           <form name="onboarding-form" id="onboarding-form" action="/.netlify/functions/handle-onboarding" novalidate="novalidate">
             <section class="questions">
@@ -59,7 +62,7 @@
                 <img alt="1" src="/img/one.svg"/>
                 <fieldset class="radios">
                   <legend>
-                    I have access to a mask today.
+                    Did you have access to the correct type of PPE mask throughout your shift today?
                   </legend>
                   <div id="answer-one" data-parent="question-one">
                     <input id="question-1-yes" type="radio" value="yes" name="answer-one"/>
@@ -73,7 +76,7 @@
                 <img alt="2" src="/img/two.svg"/>
                 <fieldset class="radios">
                   <legend>
-                    I have access to gloves and a gown.
+                    Did you have access to all 4 elements of WHO recommended PPE throughout your shift when assessing suspected COVID-19 patients: mask, eye protection, gown and gloves.
                   </legend>
                   <div id="answer-two" data-parent="question-two">
                     <input id="question-2-yes" type="radio" value="yes" name="answer-two"/>
@@ -87,7 +90,7 @@
                 <img alt="3" src="/img/three.svg"/>
                 <fieldset class="radios">
                   <legend>
-                    Covid-19 testing is available to me.
+                    Did you have access to COVID-19 testing if you required it?
                   </legend>
                   <div id="answer-three" data-parent="question-three">
                     <input id="question-3-yes" type="radio" value="yes" name="answer-three"/>
@@ -97,12 +100,21 @@
                   </div>
                 </fieldset>
               </div>
+              <div id="guidance-read-wrapper">
+                <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
+                <label class="link" for="guidance-read">I have read and understood the summary of World Health Organisation guidance as it relates to my clinical area.
+                  <a href="" target="_blank">Read Guidance</a>
+                </label>
+              </div>
             </section>
 
             <p>Thank you.</p>
             <p>Please also provide your mobile number so we can text you these questions every day, and your GMC number, so we know you're a doctor.</p>
 
             <section class="questions" id="mobile-number">
+              <aside class="privacy">
+                {% include 'partials/privacy-lock.njk' %}
+                All of your personal information will be stored securely, and will never be made public.</aside>
               <fieldset>
                 <legend>
                   Mobile number
@@ -132,13 +144,9 @@
               </div>
             </section>
 
-            <p>We need to know where you work so we can see where any gaps are across the NHS.</p>
-            <p>This information will enable us to lobby the government effectively on behalf of NHS workers everywhere.</p>
+            <p>We need to know where you work and what you do, so we can pinpoint problems across the NHS..</p>
 
             <section class="questions" id="medical-details">
-              <aside class="privacy">
-                {% include 'partials/privacy-lock.njk' %}
-                Your answers and the following information are stored separately from your phone and GMC numbers, effectively anonymising your responses.</aside>
               <label for="hospital">Your local NHS Trust or CCG</label>
               <input type="text" id="hospital" name="hospital" data-parent="medical-details"/>
               <div id="grade-container">
@@ -171,7 +179,8 @@
               <input type="checkbox" name="signup" id="signup"/>
               <label for="signup">I consent to receive emails from EveryDoctor</label>
             </section>
-            <p>By submitting this form, you are consenting to EveryDoctor using your responses for the purpose of lobbying government to provide adequate PPE across the whole NHS.</p>
+            <p>By submitting this form, you are consenting to EveryDoctor using your anonymised responses to lobby Government, NHS and raise attention to the issues facing the NHS as identified by doctors like you. You can unsubscribe at any time by texting back STOP.
+            </p>
             <p>Thank you so much.</p>
             <button>Submit</button>
           </form>

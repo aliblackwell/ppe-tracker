@@ -51,6 +51,7 @@ app.post(
     fieldRequired("hospital"),
     fieldRequired("gmc-number"),
     fieldRequired("grade"),
+    fieldRequired("guidance-read"),
     fieldRequired("specialty"),
   ],
   async (req, res, next) => {
