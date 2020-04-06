@@ -33,7 +33,14 @@
             <div class="sk-circle12 sk-circle"></div>
           </div>Loading</div>
 
-        <section class="messages hidden" aria-hidden="true">
+        <section id="database-error" class="messages hidden" aria-hidden="true">
+          <h1>There was an error connecting to the database</h1>
+          <p>Please tap the button below to try again.</p>
+          <p>If this problem persists, please leave this page as it is, contact our developer on 07719 443470, and you will be able to submit the details you've entered once we've fixed it.</p>
+          <button>Go back and try again</button>
+        </section>
+
+        <section id="human-error" class="messages hidden" aria-hidden="true">
           <h1>Unable to submit the form</h1>
           <p>Please check the below and try again:</p>
           <ul id="error-list"></ul>

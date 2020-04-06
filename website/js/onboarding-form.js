@@ -2,7 +2,8 @@ const form = document.querySelector("form#onboarding-form")
 const formWrapper = document.querySelector(".form-wrapper")
 const submitSuccess = document.querySelector(".submission-success")
 const loading = document.querySelector(".loading")
-const messages = document.querySelector(".messages")
+const humanErrorMessages = document.querySelector("#human-error")
+const databaseErrorMessages = document.querySelector('#database-error')
 const errorList = document.querySelector("#error-list")
 
 var hospital1 = new autoComplete({
@@ -39,9 +40,20 @@ function hideEl(el) {
   el.setAttribute("aria-hidden", "true")
 }
 
-function handleErrors(errors) {
+function handleDatabaseError(error) {
+  console.error(error)
+  hideEl(formWrapper)
+  showEl(databaseErrorMessages)
+  resetButton = databaseErrorMessages.querySelector('button')
+  resetButton.addEventListener('click',() => {
+    hideEl(databaseErrorMessages)
+    showEl(formWrapper)
+  })
+}
+
+function handleHumanErrors(errors) {
   let errorsClosed = 0
-  showEl(messages)
+  showEl(humanErrorMessages)
 
   errors.map((error) => {
     let element = document.querySelector(`#${error.param}`)
@@ -80,7 +92,7 @@ function handleErrors(errors) {
         element.setAttribute("data-has-err", 0)
         addedMsg.forEach((el) => el.remove())
         if (errors.length === errorsClosed) {
-          hideEl(messages)
+          hideEl(humanErrorMessages)
         }
       })
     }
@@ -101,7 +113,9 @@ form.addEventListener("submit", (evt) => {
     .then((result) => {
       hideEl(loading)
       if (result.errors) {
-        handleErrors(result.errors)
+        handleHumanErrors(result.errors)
+      } else if (result.error) {
+        handleDatabaseError(result.error)
       } else {
         hideEl(formWrapper)
         hideEl(messages)
