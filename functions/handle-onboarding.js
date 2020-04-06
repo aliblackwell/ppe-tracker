@@ -6,17 +6,18 @@ const CONTEXT = require('./helpers/inject-context');
 var multer = require("multer") // required for handling FormData objects
 var upload = multer()
 
-const dbUser = CONTEXT != 'production' ? process.env.STAGING_DB_USER : process.env.LIVE_DB_USER;
-const dbPw = CONTEXT != 'production' ? process.env.STAGING_DB_PW : process.env.LIVE_DB_PW;
-const dbName = CONTEXT != 'production' ? process.env.STAGING_DB_NAME : process.env.LIVE_DB_NAME;
+const dbUser = CONTEXT === 'DEVELOPMENT' ? process.env.STAGING_DB_USER : process.env.LIVE_DB_USER;
+const dbPw = CONTEXT === 'DEVELOPMENT' ? process.env.STAGING_DB_PW : process.env.LIVE_DB_PW;
+const dbName = CONTEXT === 'DEVELOPMENT' ? process.env.STAGING_DB_NAME : process.env.LIVE_DB_NAME;
 const crypto = require("crypto")
 const { body, validationResult, check } = require("express-validator")
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // support encoded bodies
 const Cloudant = require("@cloudant/cloudant")
+const dbString = `https://${dbUser}:${dbPw}@${process.env.DB_HOST}`
 const cloudant = Cloudant(
-  `https://${dbUser}:${dbPw}@${process.env.DB_HOST}`
+  dbString
 )
 const db = cloudant.db.use(dbName)
 
@@ -65,6 +66,8 @@ app.post(
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array({ onlyFirstError: true }) })
     }
+
+    console.log(dbString)
 
     const mobile = formatMobile(req.body["area-code"], req.body.mobile)
 

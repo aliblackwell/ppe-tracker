@@ -1,1 +1,1 @@
-module.exports = "CONTEXT_PLACEHOLDER"
+module.exports = "DEVELOPMENT"

@@ -3,6 +3,6 @@
 [build]
   # Directory to change to before starting a build.
   # This is where we will look for package.json/.nvmrc/etc.
-  command = "npm run site:build"
+  command = "sed -i s/CONTEXT_PLACEHOLDER/${CONTEXT}/g functions/helpers/inject-context.js && npm run site:build"
   publish = "ship-site"
   functions = "./lambda-built"
