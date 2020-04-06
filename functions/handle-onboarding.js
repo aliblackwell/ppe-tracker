@@ -4,8 +4,8 @@ const serverless = require("serverless-http")
 var multer = require("multer") // required for handling FormData objects
 var upload = multer()
 
-const dbUser = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_USER : process.env.LIVE_CLOUDANT_USER;
-const dbPw = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_PW : process.env.LIVE_CLOUDANT_PW;
+const dbUser = process.env.CONTEXT != 'production' ? process.env.STAGING_CLOUDANT_USER : process.env.LIVE_CLOUDANT_USER;
+const dbPw = process.env.CONTEXT != 'production' ? process.env.STAGING_CLOUDANT_PW : process.env.LIVE_CLOUDANT_PW;
 const dbUrl = process.env.CLOUDANT_HOST;
 const dbName = process.env.CONTEXT != 'production' ? 'ed-staging' : 'ed-live';
 const crypto = require("crypto")

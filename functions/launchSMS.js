@@ -8,8 +8,8 @@ const authToken = process.env.TWILIO_AUTH_TOKEN
 const client = require("twilio")(accountSid, authToken)
 
 // TODO before launch update env variables in here to production
-const dbUser = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_USER : process.env.CLOUDANT_PARTICIPANTS_USER;
-const dbPw = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_PW : process.env.CLOUDANT_PARTICIPANTS_PW;
+const dbUser = process.env.CONTEXT != 'production' ? process.env.STAGING_CLOUDANT_USER : process.env.STAGING_CLOUDANT_USER;
+const dbPw = process.env.CONTEXT != 'production' ? process.env.STAGING_CLOUDANT_PW : process.env.STAGING_CLOUDANT_PW;
 const dbUrl = process.env.CLOUDANT_HOST;
 const dbName = process.env.CONTEXT != 'production' ? 'ed-staging' : 'ed-live';
 
