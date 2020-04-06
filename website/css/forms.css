@@ -218,7 +218,7 @@ input[type="radio"] {
   height: auto;
   overflow: hidden;
   padding: 0;
-  background: url(/img/down-arrow.svg) no-repeat bottom right #fff;
+  background: url(/img/down.svg) no-repeat center right #fff;
   border: 2px solid var(--light-button-bg);
   border-radius: 7px;
   min-width: 6rem;

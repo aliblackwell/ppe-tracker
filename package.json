@@ -1,7 +1,7 @@
 {
   "name": "ppe-tracker",
-  "siteTitle": "PPE Tracker",
-  "siteUrl": "https://ppe-tracker.netlify.app",
+  "siteTitle": "Ask EveryDoctor",
+  "siteUrl": "https://ask.everydoctor.org.uk",
   "siteSlogan": "***Masks, Gowns, Goggles, Gloves*** Support the campaign to #ProtectNHSWorkers",
   "version": "0.1.0",
   "dependencies": {
