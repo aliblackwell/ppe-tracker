@@ -4,13 +4,14 @@
   font-style: normal;
 }
 
-.title-text, label, legend {
+.title-text,
+label,
+legend {
   font-family: var(--title-font), sans-serif;
   letter-spacing: 1px;
   font-weight: var(--title-font-weight);
   font-style: normal;
 }
-
 
 /*--------------------------------------------------------------
 # Core Typography
@@ -59,15 +60,16 @@ h6 {
 }
 
 a {
-  color: var(--text-medium-dark-theme-highlight);
-  text-decoration: none;
+  color: var(--bg-light-theme);
+  text-decoration: underline;
 }
 
 .light a {
   color: var(--text-medium-light-theme-highlight);
 }
 
-a:hover, a:active {
+a:hover,
+a:active {
   text-decoration: underline;
 }
 
@@ -106,7 +108,7 @@ blockquote {
 }
 
 blockquote::before {
-  content: '“';
+  content: "“";
   font-family: var(--title-font);
   letter-spacing: 1px;
   line-height: 0.5;

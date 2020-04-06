@@ -1,13 +1,14 @@
 const express = require("express")
 const serverless = require("serverless-http")
 
+const CONTEXT = require('./helpers/inject-context');
+
 var multer = require("multer") // required for handling FormData objects
 var upload = multer()
 
-const dbUser = process.env.CONTEXT != 'production' ? process.env.STAGING_CLOUDANT_USER : process.env.LIVE_CLOUDANT_USER;
-const dbPw = process.env.CONTEXT != 'production' ? process.env.STAGING_CLOUDANT_PW : process.env.LIVE_CLOUDANT_PW;
-const dbUrl = process.env.CLOUDANT_HOST;
-const dbName = process.env.CONTEXT != 'production' ? 'ed-staging' : 'ed-live';
+const dbUser = CONTEXT != 'production' ? process.env.STAGING_DB_USER : process.env.LIVE_DB_USER;
+const dbPw = CONTEXT != 'production' ? process.env.STAGING_DB_PW : process.env.LIVE_DB_PW;
+const dbName = CONTEXT != 'production' ? process.env.STAGING_DB_NAME : process.env.LIVE_DB_NAME;
 const crypto = require("crypto")
 const { body, validationResult, check } = require("express-validator")
 const app = express()
@@ -15,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // support encoded bodies
 const Cloudant = require("@cloudant/cloudant")
 const cloudant = Cloudant(
-  `https://${dbUser}:${dbPw}@${dbUrl}`
+  `https://${dbUser}:${dbPw}@${process.env.DB_HOST}`
 )
 const db = cloudant.db.use(dbName)
 

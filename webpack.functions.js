@@ -1,4 +1,4 @@
-const Dotenv = require('dotenv-webpack')
+const Dotenv = require("dotenv-webpack")
 
 // @see https://github.com/netlify/netlify-lambda#webpack-configuration
 module.exports = {

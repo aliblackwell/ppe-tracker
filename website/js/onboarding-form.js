@@ -1,9 +1,10 @@
 const form = document.querySelector("form#onboarding-form")
 const formWrapper = document.querySelector(".form-wrapper")
 const submitSuccess = document.querySelector(".submission-success")
+const doubleSubmitSuccess = document.querySelector("#double-submit-success")
 const loading = document.querySelector(".loading")
 const humanErrorMessages = document.querySelector("#human-error")
-const databaseErrorMessages = document.querySelector('#database-error')
+const databaseErrorMessages = document.querySelector("#database-error")
 const errorList = document.querySelector("#error-list")
 
 var hospital1 = new autoComplete({
@@ -19,16 +20,16 @@ var hospital1 = new autoComplete({
 })
 
 var grade1 = new autoComplete({
-  selector: '#specialty',
+  selector: "#specialty",
   minChars: 1,
-  source: function(term, suggest){
-      term = term.toLowerCase();
-      var suggestions = [];
-      for (i=0;i<specialties.length;i++)
-          if (~specialties[i].toLowerCase().indexOf(term)) suggestions.push(specialties[i]);
-      suggest(suggestions);
-  }
-});
+  source: function (term, suggest) {
+    term = term.toLowerCase()
+    var suggestions = []
+    for (i = 0; i < specialties.length; i++)
+      if (~specialties[i].toLowerCase().indexOf(term)) suggestions.push(specialties[i])
+    suggest(suggestions)
+  },
+})
 
 function showEl(el) {
   el.classList.remove("hidden")
@@ -44,8 +45,8 @@ function handleDatabaseError(error) {
   console.error(error)
   hideEl(formWrapper)
   showEl(databaseErrorMessages)
-  resetButton = databaseErrorMessages.querySelector('button')
-  resetButton.addEventListener('click',() => {
+  resetButton = databaseErrorMessages.querySelector("button")
+  resetButton.addEventListener("click", () => {
     hideEl(databaseErrorMessages)
     showEl(formWrapper)
   })
@@ -79,7 +80,9 @@ function handleHumanErrors(errors) {
       if (error.param === "area-code" || error.param === "mobile") {
         parentElement.querySelector("legend").insertAdjacentElement("afterend", errorMessage)
       } else if (error.param === "grade") {
-        parentElement.querySelector('.styled-select').insertAdjacentElement("beforebegin", errorMessage)
+        parentElement
+          .querySelector(".styled-select")
+          .insertAdjacentElement("beforebegin", errorMessage)
       } else {
         element.insertAdjacentElement("beforebegin", errorMessage)
       }
@@ -117,9 +120,16 @@ form.addEventListener("submit", (evt) => {
       } else if (result.error) {
         handleDatabaseError(result.error)
       } else {
+        if (result.update) {
+          let updateErrors = result.update.map(update => update.error)
+          if (updateErrors.includes('conflict')) {
+            showEl(doubleSubmitSuccess)
+          } 
+        }
+        showEl(submitSuccess)
         hideEl(formWrapper)
         hideEl(humanErrorMessages)
-        showEl(submitSuccess)
+        
       }
     })
 })

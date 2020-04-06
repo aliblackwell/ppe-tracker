@@ -8,10 +8,10 @@ const authToken = process.env.TWILIO_AUTH_TOKEN
 const client = require("twilio")(accountSid, authToken)
 
 // TODO before launch update env variables in here to production
-const dbUser = process.env.CONTEXT != 'production' ? process.env.STAGING_CLOUDANT_USER : process.env.STAGING_CLOUDANT_USER;
-const dbPw = process.env.CONTEXT != 'production' ? process.env.STAGING_CLOUDANT_PW : process.env.STAGING_CLOUDANT_PW;
-const dbUrl = process.env.CLOUDANT_HOST;
-const dbName = process.env.CONTEXT != 'production' ? 'ed-staging' : 'ed-live';
+const dbUser = process.env.PRODUCTION_HOST ? process.env.STAGING_CLOUDANT_USER : process.env.STAGING_CLOUDANT_USER;
+const dbPw = process.env.PRODUCTION_HOST ? process.env.STAGING_CLOUDANT_PW : process.env.STAGING_CLOUDANT_PW;
+const dbUrl = process.env.DB_HOST;
+const dbName = process.env.PRODUCTION_HOST ? 'ed-staging' : 'ed-live';
 
 const Cloudant = require("@cloudant/cloudant")
 const cloudant = Cloudant(

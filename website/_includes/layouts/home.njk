@@ -48,6 +48,10 @@
 
         <div class="submission-success hidden" aria-hidden="true">
           <p>Thank you so much for joining our campaign.</p>
+          <div id="double-submit-success" class="hidden" aria-hidden="true">
+            <p>However, it looks like you are already participating; your mobile number is already in our database.</p>
+            <p>If this wasn't you, <a href="mailto:press@everydoctor.org.uk">please contact us</a> and we will correct it.</p>
+          </div>
           <p>Please do share this tool with colleagues:</p>
           {% include 'partials/sharer.njk' %}
           <p>We will text you soon. Please text back!</p>
@@ -110,8 +114,8 @@
               <div id="guidance-read-wrapper">
                 <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
                 <label class="link" for="guidance-read">I have read and understood the summary of World Health Organisation guidance as it relates to my clinical area.</label>
-                  <a href="" target="_blank">Read Guidance</a>
-                
+                <a href="" target="_blank">Read Guidance</a>
+
               </div>
             </section>
 

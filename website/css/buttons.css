@@ -16,7 +16,7 @@ button,
   transition: all 0.3s;
   cursor: pointer;
   background: var(--bg-light-theme);
-  color: var(--text-large-light);
+  color: white;
   box-shadow: 0 6px var(--bg-light-theme-border);
   -webkit-transition: none;
   -moz-transition: none;
