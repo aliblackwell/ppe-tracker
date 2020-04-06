@@ -6,8 +6,8 @@ var upload = multer()
 
 const dbUser = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_USER : process.env.LIVE_CLOUDANT_USER;
 const dbPw = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_PW : process.env.LIVE_CLOUDANT_PW;
-const dbUrl = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_HOST : process.env.LIVE_CLOUDANT_HOST;
-
+const dbUrl = process.env.CLOUDANT_HOST;
+const dbName = process.env.CONTEXT != 'production' ? 'ed-staging' : 'ed-live';
 const crypto = require("crypto")
 const { body, validationResult, check } = require("express-validator")
 const app = express()
@@ -17,7 +17,7 @@ const Cloudant = require("@cloudant/cloudant")
 const cloudant = Cloudant(
   `https://${dbUser}:${dbPw}@${dbUrl}`
 )
-const db = cloudant.db.use("participants")
+const db = cloudant.db.use(dbName)
 
 function formatMobile(ac, mobile) {
   let mobileNoZero = parseInt(mobile)

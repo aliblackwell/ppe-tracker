@@ -10,13 +10,14 @@ const client = require("twilio")(accountSid, authToken)
 // TODO before launch update env variables in here to production
 const dbUser = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_USER : process.env.CLOUDANT_PARTICIPANTS_USER;
 const dbPw = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_PW : process.env.CLOUDANT_PARTICIPANTS_PW;
-const dbUrl = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_HOST : process.env.CLOUDANT_HOST;
+const dbUrl = process.env.CLOUDANT_HOST;
+const dbName = process.env.CONTEXT != 'production' ? 'ed-staging' : 'ed-live';
 
 const Cloudant = require("@cloudant/cloudant")
 const cloudant = Cloudant(
   `https://${dbUser}:${dbPw}@${dbUrl}`
 )
-const db = cloudant.db.use("participants")
+const db = cloudant.db.use(dbName)
 
 app.get("*", (req, res, next) => {
   db.partitionedList("mobiles", { include_docs: true })
