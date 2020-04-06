@@ -118,7 +118,7 @@ form.addEventListener("submit", (evt) => {
         handleDatabaseError(result.error)
       } else {
         hideEl(formWrapper)
-        hideEl(messages)
+        hideEl(humanErrorMessages)
         showEl(submitSuccess)
       }
     })
