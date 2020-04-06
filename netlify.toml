@@ -8,4 +8,4 @@
   functions = "./lambda-built"
 
 [context.production]
-  command = "sed -i s/CONTEXT_PLACEHOLDER/${CONTEXT}/g functions/helpers/inject-context.js && npm run site:build"
+  command = "sed -i s/CONTEXT_PLACEHOLDER/${CONTEXT}/g ./functions/helpers/inject-context.js && npm run site:build"
