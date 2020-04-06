@@ -4,6 +4,10 @@ const serverless = require("serverless-http")
 var multer = require("multer") // required for handling FormData objects
 var upload = multer()
 
+const dbUser = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_USER : process.env.LIVE_CLOUDANT_USER;
+const dbPw = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_PARTICIPANTS_PW : process.env.LIVE_CLOUDANT_PW;
+const dbUrl = process.env.CONTEXT != 'production' ? process.env.CLOUDANT_HOST : process.env.LIVE_CLOUDANT_HOST;
+
 const crypto = require("crypto")
 const { body, validationResult, check } = require("express-validator")
 const app = express()
@@ -11,7 +15,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // support encoded bodies
 const Cloudant = require("@cloudant/cloudant")
 const cloudant = Cloudant(
-  `https://${process.env.CLOUDANT_PARTICIPANTS_USER}:${process.env.CLOUDANT_PARTICIPANTS_PW}@${process.env.CLOUDANT_HOST}`
+  `https://${dbUser}:${dbPw}@${dbUrl}`
 )
 const db = cloudant.db.use("participants")
 
