@@ -293,3 +293,7 @@ label.link + a {
   font-weight: var(--title-font-weight);
   display: inline;
 }
+
+.loading {
+  text-align: center;
+}

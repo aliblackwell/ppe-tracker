@@ -1,14 +1,14 @@
 const express = require("express")
 const serverless = require("serverless-http")
 
-const ctxt = require('./helpers/inject-context');
+const ctxt = require("./helpers/inject-context")
 
 var multer = require("multer") // required for handling FormData objects
 var upload = multer()
 
-const dbUser = ctxt === 'production' ? process.env.LIVE_DB_USER : process.env.STAGING_DB_USER;
-const dbPw = ctxt === 'production' ? process.env.LIVE_DB_PW : process.env.STAGING_DB_PW;
-const dbName = ctxt === 'production' ?  process.env.LIVE_DB_NAME : process.env.STAGING_DB_NAME;
+const dbUser = ctxt === "production" ? process.env.LIVE_DB_USER : process.env.STAGING_DB_USER
+const dbPw = ctxt === "production" ? process.env.LIVE_DB_PW : process.env.STAGING_DB_PW
+const dbName = ctxt === "production" ? process.env.LIVE_DB_NAME : process.env.STAGING_DB_NAME
 const crypto = require("crypto")
 const { body, validationResult, check } = require("express-validator")
 const app = express()
@@ -16,9 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // support encoded bodies
 const Cloudant = require("@cloudant/cloudant")
 const dbString = `https://${dbUser}:${dbPw}@${process.env.DB_HOST}`
-const cloudant = Cloudant(
-  dbString
-)
+const cloudant = Cloudant(dbString)
 const db = cloudant.db.use(dbName)
 
 function formatMobile(ac, mobile) {
@@ -67,8 +65,6 @@ app.post(
       return res.status(422).json({ errors: errors.array({ onlyFirstError: true }) })
     }
 
-    console.log(dbString)
-
     const mobile = formatMobile(req.body["area-code"], req.body.mobile)
 
     const identifibleHash = crypto
@@ -81,35 +77,40 @@ app.post(
       .update(mobile)
       .digest("hex")
 
-    const timeBaseIdentifier = crypto
+    const today = new Date()
+    const englishDateString = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`
+
+    const todayBasedIdentifier = crypto
       .createHmac("sha256", process.env.SALT_THREE)
-      .update(Date.now().toString())
+      .update(`${englishDateString}-${mobile}`)
       .digest("hex")
 
-    const mobiles = {
-      _id: `mobiles:${identifibleHash}`,
+    const user = {
+      _id: `user:${identifibleHash}`,
       mobile,
+      ["gmc-number"]: req.body["gmc-number"],
     }
 
-    const user = {
-      _id: `user:${anonymousHash}`,
-      gender: req.body.gender,
-      nationality: req.body.nationality,
-      jobTitle: req.body["job-title"],
-    }
+    req.body["first-name"] && (user["first-name"] = req.body["first-name"])
+    req.body["surname"] && (user["surname"] = req.body["surname"])
+    req.body["email"] && (user["email"] = req.body["email"])
+    req.body["signup"] && (user["marketing-consent"] = req.body["signup"])
 
     const answerBlock = {
-      _id: `answers:${timeBaseIdentifier}`,
+      _id: `answer:${todayBasedIdentifier}`,
       user: anonymousHash,
       timestamp: Date.now(), // make just day/month/year
+      readableDate: englishDateString,
       answerOne: req.body["answer-one"],
       answerTwo: req.body["answer-two"],
       answerThree: req.body["answer-three"],
       hospital: req.body.hospital,
+      grade: req.body.grade,
+      specialty: req.body.specialty,
     }
 
     const documents = {
-      docs: [mobiles, user, answerBlock],
+      docs: [user, answerBlock],
     }
 
     try {

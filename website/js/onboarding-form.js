@@ -55,7 +55,7 @@ function handleDatabaseError(error) {
 function handleHumanErrors(errors) {
   let errorsClosed = 0
   showEl(humanErrorMessages)
-
+  showEl(formWrapper)
   errors.map((error) => {
     let element = document.querySelector(`#${error.param}`)
     let parentId = element.getAttribute("data-parent")
@@ -104,6 +104,7 @@ function handleHumanErrors(errors) {
 
 form.addEventListener("submit", (evt) => {
   showEl(loading)
+  hideEl(formWrapper)
   window.scrollTo(0, 0)
   evt.preventDefault()
 
@@ -127,7 +128,6 @@ form.addEventListener("submit", (evt) => {
           } 
         }
         showEl(submitSuccess)
-        hideEl(formWrapper)
         hideEl(humanErrorMessages)
         
       }
