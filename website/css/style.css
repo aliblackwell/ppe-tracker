@@ -48,8 +48,6 @@ h1.logo {
 
 .questions {
   padding: 1rem;
-  width: 110%;
-  margin-left: -5%;
   margin-bottom: 1.5em;
   border: 2px solid var(--light-button-bg);
 }
@@ -269,14 +267,25 @@ footer a {
   40% { opacity: 1; } 
 }
 
+input[type="checkbox"]#guidance-read {
+  transform: none;
+}
+
 label.link {
   font-family: var(--body-font);
   font-weight: 400;
+  display: inline;
+  letter-spacing: 0;
+  font-size: var(--text-small);
+  line-height: var(--line-height);
+  
 }
 
-label.link a {
+label.link + a {
+  font-size: var(--text-small);
   text-decoration: underline;
   color: var(--bg-light-theme);
   font-family: var(--title-font);
   font-weight: var(--title-font-weight);
+  display: inline;
 }

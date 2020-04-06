@@ -84,7 +84,8 @@ form textarea {
   /* For Windows high contrast mode. */
 }
 
-form label, legend {
+form label,
+legend {
   display: block;
   font-size: var(--text-medium);
   margin-bottom: 0.5rem;
@@ -113,9 +114,10 @@ form input:last-child {
 input[type="checkbox"] {
   width: 1.5rem;
   float: left;
-  transform: scale(1.2);
-  top: 0.5rem;
+  transform: scale(1.4);
+  top: 0.4rem;
   position: relative;
+  margin: 0 0.25rem 0 0;
 }
 .inline-form {
   display: flex;
@@ -176,6 +178,10 @@ input[type="radio"] {
   width: 0;
 }
 
+.radios label, input[type=radio], input[type=checkbox], label.link {
+  cursor: pointer;
+}
+
 .radios label {
   display: inline-block;
   background-color: #ddd;
@@ -222,7 +228,6 @@ input[type="radio"] {
 .styled-select.mobile {
   margin-bottom: 0;
 }
- 
 
 .styled-select select {
   background: transparent;
@@ -237,7 +242,6 @@ input[type="radio"] {
 }
 
 input#mobile {
- 
   margin-right: none;
   margin-left: auto;
 }
@@ -261,7 +265,6 @@ input#mobile {
 .flex-item input {
   margin-bottom: 0;
   width: 100%;
- 
 }
 
 fieldset {
