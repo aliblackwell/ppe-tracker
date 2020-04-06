@@ -6,9 +6,9 @@ const CONTEXT = require('./helpers/inject-context');
 var multer = require("multer") // required for handling FormData objects
 var upload = multer()
 
-const dbUser = CONTEXT === 'DEVELOPMENT' ? process.env.STAGING_DB_USER : process.env.LIVE_DB_USER;
-const dbPw = CONTEXT === 'DEVELOPMENT' ? process.env.STAGING_DB_PW : process.env.LIVE_DB_PW;
-const dbName = CONTEXT === 'DEVELOPMENT' ? process.env.STAGING_DB_NAME : process.env.LIVE_DB_NAME;
+const dbUser = CONTEXT === 'production' ? process.env.LIVE_DB_USER : process.env.STAGING_DB_USER;
+const dbPw = CONTEXT === 'production' ? process.env.LIVE_DB_PW : process.env.STAGING_DB_PW;
+const dbName = CONTEXT === 'production' ?  process.env.LIVE_DB_NAME : process.env.STAGING_DB_NAME;
 const crypto = require("crypto")
 const { body, validationResult, check } = require("express-validator")
 const app = express()
