@@ -58,21 +58,27 @@
           {% include 'partials/sharer.njk' %}
           <p>We will text you soon. Please text back!</p>
 
-          <form name="signup-form" id="signup-form" action="/.netlify/functions/handle-signup" novalidate="novalidate">
+          <div id="signup-form-wrapper">
             <p>Finally, please provide your name and email if you would like to sign up to our mailing list.</p>
-            <section class="questions">
+            <p aria-hidden="true" class="hidden" id="signup-success">Thank you so much for signing up.</p>
+            <p aria-hidden="true" class="hidden" id="duplicate-email">It looks like your email is already in the database.</p>
+            <form name="signup-form" id="signup-form" action="/.netlify/functions/handle-signup" novalidate="novalidate">
+              <section class="questions">
 
-              <label for="first-name">Your first name</label>
-              <input type="text" name="first-name" id="first-name">
-              <label for="surname">Your surname</label>
-              <input type="text" name="surname" id="surname">
+                <label for="first-name">Your first name</label>
+                <input type="text" name="first-name" id="first-name">
+                <label for="surname">Your surname</label>
+                <input type="text" name="surname" id="surname">
 
-              <label for="email">Your email</label>
-              <input type="email" name="email" id="email">
-              <input type="checkbox" name="signup" id="signup"/>
-              <label for="signup">I consent to receive emails from EveryDoctor</label>
-            </section>
-          </form>
+                <label for="email">Your email</label>
+                <input type="email" name="email" id="email">
+                <input type="checkbox" name="signup" id="signup"/>
+                <label for="signup">I consent to receive emails from EveryDoctor</label>
+              <button class="smaller">Signup</button>
+              </section>
+              
+            </form>
+          </div>
 
           <p>All best wishes,</p>
           <p>
@@ -81,7 +87,7 @@
           </p>
         </div>
 
-        <div class="form-wrapper" aria-hidden="false">
+        <div class="form-wrapper" id="onboarding-form-wrapper" aria-hidden="false">
           <p>We're collecting real-time data from medics so that we can advocate for the safety of all NHS staff and our patients.</p>
           <p>Will you commit to answering three simple questions regularly?
           </p>

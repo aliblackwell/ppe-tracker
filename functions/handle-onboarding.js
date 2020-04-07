@@ -1,30 +1,11 @@
-const express = require("express")
-const serverless = require("serverless-http")
 const db = require("./helpers/database")
 const createHash = require("./helpers/crypto")
-
-var multer = require("multer") // required for handling FormData objects
-var upload = multer()
-
-const { body, validationResult, check } = require("express-validator")
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true })) // support encoded bodies
-
-function formatMobile(ac, mobile) {
-  let mobileNoZero = parseInt(mobile)
-  let cleanMobile = mobileNoZero.toString().replace(/ /g, "")
-  let cleanAc = ac.toString().replace(/ /g, "")
-  return `${cleanAc}${cleanMobile}`
-}
-
-function validateAnswer(answer) {
-  return body(answer).not().isEmpty().withMessage("Please answer the question.")
-}
-
-function fieldRequired(field) {
-  return body(field).not().isEmpty().withMessage("This field is required.")
-}
+const app = require("./helpers/express")
+const serverless = require("serverless-http")
+const upload = require("./helpers/upload")
+const twilio = require("./helpers/twilio")
+const { body, validationResult, check, custom } = require("express-validator")
+const { fieldRequired, validateAnswer, formatMobile } = require("./helpers/form-validators")
 
 app.post(
   "*",
@@ -42,7 +23,25 @@ app.post(
       .withMessage("This number is not long enough.")
       .not()
       .contains("+")
-      .withMessage("Please remove the area code."),
+      .withMessage("Please remove the area code.")
+      .custom((phone, { req }) => {
+        console.log("uh hello?!?")
+        const mobile = formatMobile(req.body["area-code"], req.body.mobile)
+        console.log(mobile)
+        return twilio.lookups
+          .phoneNumbers(mobile)
+          .fetch({ type: ["carrier"] })
+          .then(data => {
+            console.log(data)            
+            return Promise.resolve(true)
+          })
+          .catch((error) => {
+            console.log('ERROR')
+            console.log(error)
+            return Promise.reject('Your number could not be verified.')
+          })
+      })
+      .withMessage("not allowed!"),
 
     fieldRequired("hospital"),
     fieldRequired("gmc-number"),

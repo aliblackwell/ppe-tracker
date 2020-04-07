@@ -1,5 +1,6 @@
-const form = document.querySelector("form#onboarding-form")
-const formWrapper = document.querySelector(".form-wrapper")
+
+const onboardingFormWrapper = document.querySelector("#onboarding-form-wrapper")
+const signupFormWrapper = document.querySelector("#signup-form-wrapper")
 const submitSuccess = document.querySelector(".submission-success")
 const doubleSubmitSuccess = document.querySelector("#double-submit-success")
 const loading = document.querySelector(".loading")
@@ -41,21 +42,18 @@ function hideEl(el) {
   el.setAttribute("aria-hidden", "true")
 }
 
-function handleDatabaseError(error) {
+function handleDatabaseError(error, startCallback, clickCallback) {
   console.error(error)
-  hideEl(formWrapper)
-  showEl(databaseErrorMessages)
+  startCallback()
   resetButton = databaseErrorMessages.querySelector("button")
   resetButton.addEventListener("click", () => {
-    hideEl(databaseErrorMessages)
-    showEl(formWrapper)
+    clickCallback()
   })
 }
 
-function handleHumanErrors(errors) {
+function handleHumanErrors(errors, beginCb, endCb) {
   let errorsClosed = 0
-  showEl(humanErrorMessages)
-  showEl(formWrapper)
+  beginCb()
   errors.map((error) => {
     let element = document.querySelector(`#${error.param}`)
     let parentId = element.getAttribute("data-parent")
@@ -95,41 +93,105 @@ function handleHumanErrors(errors) {
         element.setAttribute("data-has-err", 0)
         addedMsg.forEach((el) => el.remove())
         if (errors.length === errorsClosed) {
-          hideEl(humanErrorMessages)
+          endCb()
         }
       })
     }
   })
 }
 
-form.addEventListener("submit", (evt) => {
-  showEl(loading)
-  hideEl(formWrapper)
-  window.scrollTo(0, 0)
-  evt.preventDefault()
+const signupForm = {
+  formEl: document.querySelector("form#signup-form"),
+  loadingEl: loading,
+  wrapperEl: signupFormWrapper,
+  humanErrorStart: () => {
+    showEl(humanErrorMessages)
+    showEl(signupFormWrapper)
+  },
+  humanErrorEnd: () => hideEl(humanErrorMessages),
+  databaseErrorStart: () => {
+    hideEl(signupFormWrapper)
+    showEl(databaseErrorMessages)
+  },
+  databaseErrorEnd: () => {
+    hideEl(databaseErrorMessages)
+    showEl(signupFormWrapper)
+  },
+  handleConflict: () => showEl(document.querySelector('#duplicate-email')),
+  handleSuccess: () => {
+    showEl(document.querySelector('#signup-success'))
+    hideEl(humanErrorMessages)
+  },
+}
 
-  const FD = new FormData(form)
-  fetch(form.getAttribute("action"), {
-    method: "POST",
-    body: FD,
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      hideEl(loading)
-      if (result.errors) {
-        handleHumanErrors(result.errors)
-      } else if (result.error) {
-        handleDatabaseError(result.error)
-      } else {
-        if (result.update) {
-          let updateErrors = result.update.map(update => update.error)
-          if (updateErrors.includes('conflict')) {
-            showEl(doubleSubmitSuccess)
-          } 
-        }
-        showEl(submitSuccess)
-        hideEl(humanErrorMessages)
-        
-      }
+const onboardingForm = {
+  formEl: document.querySelector("form#onboarding-form"),
+  loadingEl: loading,
+  wrapperEl: onboardingFormWrapper,
+  humanErrorStart: () => {
+    showEl(humanErrorMessages)
+    showEl(onboardingFormWrapper)
+  },
+  humanErrorEnd: () => hideEl(humanErrorMessages),
+  databaseErrorStart: () => {
+    hideEl(onboardingFormWrapper)
+    showEl(databaseErrorMessages)
+  },
+  databaseErrorEnd: () => {
+    hideEl(databaseErrorMessages)
+    showEl(onboardingFormWrapper)
+  },
+  handleConflict: () => showEl(doubleSubmitSuccess),
+  handleSuccess: () => {
+    showEl(submitSuccess)
+    hideEl(humanErrorMessages)
+  },
+}
+
+function handleForm(form) {
+  form.formEl.addEventListener("submit", (evt) => {
+    showEl(form.loadingEl)
+    hideEl(form.wrapperEl)
+    window.scrollTo(0, 0)
+    evt.preventDefault()
+
+    const FD = new FormData(form.formEl)
+    fetch(form.formEl.getAttribute("action"), {
+      method: "POST",
+      body: FD,
     })
-})
+      .then((response) => response.json())
+      .then((result) => {
+        hideEl(form.loadingEl)
+        if (result.errors) {
+          handleHumanErrors(
+            result.errors,
+            () => {
+              form.humanErrorStart()
+            },
+            () => form.humanErrorEnd()
+          )
+        } else if (result.error) {
+          handleDatabaseError(
+            result.error,
+            () => {
+              form.databaseErrorStart()
+            },
+            () => {
+              form.databaseErrorEnd()
+            }
+          )
+        } else {
+          if (result.update) {
+            let updateErrors = result.update.map((update) => update.error)
+            if (updateErrors.includes("conflict")) {
+              form.handleConflict()
+            }
+          }
+          form.handleSuccess()
+        }
+      })
+  })
+}
+
+handleForm(onboardingForm)
