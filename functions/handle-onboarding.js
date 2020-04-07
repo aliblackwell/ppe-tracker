@@ -1,23 +1,15 @@
 const express = require("express")
 const serverless = require("serverless-http")
-
-const ctxt = require("./helpers/inject-context")
+const db = require("./helpers/database")
+const createHash = require("./helpers/crypto")
 
 var multer = require("multer") // required for handling FormData objects
 var upload = multer()
 
-const dbUser = ctxt === "production" ? process.env.LIVE_DB_USER : process.env.STAGING_DB_USER
-const dbPw = ctxt === "production" ? process.env.LIVE_DB_PW : process.env.STAGING_DB_PW
-const dbName = ctxt === "production" ? process.env.LIVE_DB_NAME : process.env.STAGING_DB_NAME
-const crypto = require("crypto")
 const { body, validationResult, check } = require("express-validator")
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // support encoded bodies
-const Cloudant = require("@cloudant/cloudant")
-const dbString = `https://${dbUser}:${dbPw}@${process.env.DB_HOST}`
-const cloudant = Cloudant(dbString)
-const db = cloudant.db.use(dbName)
 
 function formatMobile(ac, mobile) {
   let mobileNoZero = parseInt(mobile)
@@ -67,23 +59,16 @@ app.post(
 
     const mobile = formatMobile(req.body["area-code"], req.body.mobile)
 
-    const identifibleHash = crypto
-      .createHmac("sha256", process.env.SALT_ONE)
-      .update(mobile)
-      .digest("hex")
-
-    const anonymousHash = crypto
-      .createHmac("sha256", process.env.SALT_TWO)
-      .update(mobile)
-      .digest("hex")
+    const identifibleHash = createHash(mobile, process.env.SALT_ONE)
+    const anonymousHash = createHash(mobile, process.env.SALT_TWO)
 
     const today = new Date()
     const englishDateString = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`
 
-    const todayBasedIdentifier = crypto
-      .createHmac("sha256", process.env.SALT_THREE)
-      .update(`${englishDateString}-${mobile}`)
-      .digest("hex")
+    const todayBasedIdentifier = createHash(
+      `${englishDateString}-${mobile}`,
+      process.env.SALT_THREE
+    )
 
     const user = {
       _id: `user:${identifibleHash}`,

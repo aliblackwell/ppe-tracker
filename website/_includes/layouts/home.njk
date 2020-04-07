@@ -50,11 +50,30 @@
           <p>Thank you so much for joining our campaign.</p>
           <div id="double-submit-success" class="hidden" aria-hidden="true">
             <p>However, it looks like you are already participating; your mobile number is already in our database.</p>
-            <p>If this wasn't you, <a href="mailto:press@everydoctor.org.uk">please contact us</a> and we will correct it.</p>
+            <p>If this wasn't you,
+              <a href="mailto:press@everydoctor.org.uk">please contact us</a>
+              and we will correct it.</p>
           </div>
           <p>Please do share this tool with colleagues:</p>
           {% include 'partials/sharer.njk' %}
           <p>We will text you soon. Please text back!</p>
+
+          <form name="signup-form" id="signup-form" action="/.netlify/functions/handle-signup" novalidate="novalidate">
+            <p>Finally, please provide your name and email if you would like to sign up to our mailing list.</p>
+            <section class="questions">
+
+              <label for="first-name">Your first name</label>
+              <input type="text" name="first-name" id="first-name">
+              <label for="surname">Your surname</label>
+              <input type="text" name="surname" id="surname">
+
+              <label for="email">Your email</label>
+              <input type="email" name="email" id="email">
+              <input type="checkbox" name="signup" id="signup"/>
+              <label for="signup">I consent to receive emails from EveryDoctor</label>
+            </section>
+          </form>
+
           <p>All best wishes,</p>
           <p>
             <strong>Dr Julia Patterson,</strong><br/>
@@ -113,8 +132,9 @@
               </div>
               <div id="guidance-read-wrapper">
                 <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
-                <label class="link" for="guidance-read">Check this box to confirm you have read and understood our thirty second <a href="" target="_blank">summary of World Health Organisation standards for PPE.</a></label>
-               
+                <label class="link" for="guidance-read">Check this box to confirm you have read and understood our thirty second
+                  <a href="" target="_blank">summary of World Health Organisation standards for PPE.</a>
+                </label>
 
               </div>
             </section>
@@ -175,20 +195,6 @@
                 <label for="specialty">Your specialty</label>
                 <input type="text" id="specialty" name="specialty" data-parent="specialty-container"/>
               </div>
-            </section>
-
-            <p>Finally, please provide your name and email if you would like to sign up to our mailing list.</p>
-            <section class="questions">
-
-              <label for="first-name">Your first name</label>
-              <input type="text" name="first-name" id="first-name">
-              <label for="surname">Your surname</label>
-              <input type="text" name="surname" id="surname">
-
-              <label for="email">Your email</label>
-              <input type="email" name="email" id="email">
-              <input type="checkbox" name="signup" id="signup"/>
-              <label for="signup">I consent to receive emails from EveryDoctor</label>
             </section>
             <p>By submitting this form, you are consenting to EveryDoctor using your anonymised responses to lobby Government, NHS and raise attention to the issues facing the NHS as identified by doctors like you. You can unsubscribe at any time by texting back STOP.
             </p>
