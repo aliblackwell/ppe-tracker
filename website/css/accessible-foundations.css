@@ -63,6 +63,12 @@ img {
   box-shadow: 0px 0px 0px 2px var(--outline-focus) !important;
 }
 
+label a:focus {
+  box-shadow: none !important;
+  text-decoration: none;
+  border-bottom: 1px solid var(--outline-focus) !important;
+}
+
 /*--------------------------------------------------------------
 # Foundations
 --------------------------------------------------------------*/

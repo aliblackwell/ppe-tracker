@@ -293,10 +293,10 @@ footer a {
 label.link {
   font-family: var(--body-font);
   font-weight: 400;
-  display: inline;
-  letter-spacing: 0;
+  display: block;
+ 
   font-size: var(--text-small);
-  line-height: var(--line-height);
+  line-height: 1.4;
 }
 
 label.link + a {
@@ -305,7 +305,7 @@ label.link + a {
   color: var(--text-color-dark);
   font-family: var(--title-font);
   font-weight: var(--title-font-weight);
-  display: inline;
+  display: inline-block;
 }
 
 .loading {

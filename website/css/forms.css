@@ -189,14 +189,17 @@ label.link {
   display: inline-block;
   background-color: #ddd;
   padding: 10px 20px;
-  font-family: sans-serif, Arial;
-  font-size: 16px;
-  border: 2px solid #444;
-  border-radius: 4px;
+  border: 2px solid #ddd;
+  border-radius: 7px;
+  line-height: 1;
 }
 
 .radios label:hover {
   background-color: #dfd;
+}
+
+.radios label.negative:hover {
+  background-color: rgb(255, 221, 221);
 }
 
 .radios input[type="radio"]:focus + label {
@@ -205,7 +208,12 @@ label.link {
 
 .radios input[type="radio"]:checked + label {
   background-color: #bfb;
-  border-color: #4c4;
+  border: 2px solid  #4c4;
+}
+
+.radios input[type="radio"]:checked + label.negative {
+  background-color: rgb(255, 187, 187);
+  border: 2px solid  rgb(204, 68, 68);
 }
 
 .msg {
@@ -213,8 +221,6 @@ label.link {
   border-bottom: 5px solid var(--bg-dark-theme-border);
   margin-bottom: 1rem;
   color: var(--bg-light-theme);
-  font-family: var(--title-font);
-  font-weight: 700;
 }
 
 .styled-select {
