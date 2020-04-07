@@ -181,7 +181,8 @@ input[type="radio"] {
 .radios label,
 input[type="radio"],
 input[type="checkbox"],
-label.link {
+label.link,
+label[for="signup"] {
   cursor: pointer;
 }
 
