@@ -1,7 +1,7 @@
-
 const onboardingFormWrapper = document.querySelector("#onboarding-form-wrapper")
 const signupFormWrapper = document.querySelector("#signup-form-wrapper")
 const submitSuccess = document.querySelector(".submission-success")
+const verifyNumberFormWrapper = document.querySelector("#verify-number-form-wrapper")
 const doubleSubmitSuccess = document.querySelector("#double-submit-success")
 const loading = document.querySelector(".loading")
 const humanErrorMessages = document.querySelector("#human-error")
@@ -45,9 +45,19 @@ function hideEl(el) {
 function handleDatabaseError(error, startCallback, clickCallback) {
   console.error(error)
   startCallback()
-  resetButton = databaseErrorMessages.querySelector("button")
+  const resetButton = databaseErrorMessages.querySelector("button")
   resetButton.addEventListener("click", () => {
     clickCallback()
+  })
+}
+
+function handlePhoneVerificationError() {
+  const goBackButton = document.querySelectorAll(".go-back")
+  goBackButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      showEl(onboardingFormWrapper)
+      hideEl(verifyNumberFormWrapper)
+    })
   })
 }
 
@@ -57,7 +67,11 @@ function handleHumanErrors(errors, beginCb, endCb) {
   errors.map((error) => {
     let element = document.querySelector(`#${error.param}`)
     let parentId = element.getAttribute("data-parent")
-    parentElement = document.querySelector(`#${parentId}`)
+      ? element.getAttribute("data-parent")
+      : error.param
+
+    const parentElement = document.querySelector(`#${parentId}`)
+
     const hasErr = element.getAttribute("data-has-err")
     if (parseInt(hasErr) != 1) {
       element.setAttribute("data-has-err", 1)
@@ -100,6 +114,37 @@ function handleHumanErrors(errors, beginCb, endCb) {
   })
 }
 
+function setMobile(mobile) {
+  const mobileHolder = document.querySelector("span.mobile-number")
+  const mobileInput = document.querySelector("#hidden-mobile")
+  mobileInput.value = mobile
+  mobileHolder.innerHTML = mobile
+}
+
+const verifyNumberForm = {
+  formEl: document.querySelector("form#verify-number-form"),
+  loadingEl: loading,
+  wrapperEl: verifyNumberFormWrapper,
+  humanErrorStart: () => {
+    showEl(humanErrorMessages)
+    showEl(verifyNumberFormWrapper)
+  },
+  humanErrorEnd: () => hideEl(humanErrorMessages),
+  databaseErrorStart: () => {},
+  databaseErrorEnd: () => {},
+  handleConflict: () => {},
+  handleSuccess: (result) => {
+    if (result.message === "approved") {
+      showEl(submitSuccess)
+    } else {
+      showEl(verifyNumberFormWrapper)
+      showEl(document.querySelector("#got-pending"))
+    }
+
+    hideEl(humanErrorMessages)
+  },
+}
+
 const signupForm = {
   formEl: document.querySelector("form#signup-form"),
   loadingEl: loading,
@@ -117,9 +162,9 @@ const signupForm = {
     hideEl(databaseErrorMessages)
     showEl(signupFormWrapper)
   },
-  handleConflict: () => showEl(document.querySelector('#duplicate-email')),
+  handleConflict: () => showEl(document.querySelector("#duplicate-email")),
   handleSuccess: () => {
-    showEl(document.querySelector('#signup-success'))
+    showEl(document.querySelector("#signup-success"))
     hideEl(humanErrorMessages)
   },
 }
@@ -142,8 +187,9 @@ const onboardingForm = {
     showEl(onboardingFormWrapper)
   },
   handleConflict: () => showEl(doubleSubmitSuccess),
-  handleSuccess: () => {
-    showEl(submitSuccess)
+  handleSuccess: (response) => {
+    showEl(verifyNumberFormWrapper)
+    setMobile(response.mobile)
     hideEl(humanErrorMessages)
   },
 }
@@ -188,10 +234,13 @@ function handleForm(form) {
               form.handleConflict()
             }
           }
-          form.handleSuccess()
+          form.handleSuccess(result)
         }
       })
   })
 }
 
+handleForm(verifyNumberForm)
+handleForm(signupForm)
 handleForm(onboardingForm)
+handlePhoneVerificationError()

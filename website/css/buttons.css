@@ -55,6 +55,11 @@ button.smaller,
   margin-bottom: 0;
 }
 
+button.smaller.inline {
+  display: inline;
+  width: auto;
+}
+
 .light button.smaller,
 .light .button.smaller {
   background: var(--bg-dark-theme);

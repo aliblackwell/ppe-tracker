@@ -46,6 +46,34 @@
           <ul id="error-list"></ul>
         </section>
 
+        <section id="verify-number-form-wrapper" class="hidden" aria-hidden="true">
+          <div id="got-pending" class="messages hidden" aria-hidden="true">
+            <h1>That code wasn't recognised.
+            </h1>
+            <p>Please double-check and try again.</p>
+            <p>If you need to correct your number, please:
+              <button class="smaller inline go-back">Go back and try again</button>
+            </p>
+          </div>
+
+          <h1>We just sent a code to
+            <span class="mobile-number"></span></h1>
+
+          <form name="verify-number-form" id="verify-number-form" action="/.netlify/functions/verify-number">
+
+            <label for="verification">
+              Please enter the code to verify your number.
+            </label>
+            <input type="tel" name="verification" id="verification"/>
+            <input type="hidden" name="mobile" id="hidden-mobile"/>
+            <button class="smaller">Verify</button>
+          </form>
+          <p>If that isn't your number:
+            <button class="smaller inline go-back">Go back and try again</button>
+          </p>
+
+        </section>
+
         <div class="submission-success hidden" aria-hidden="true">
           <p>Thank you so much for joining our campaign.</p>
           <div id="double-submit-success" class="hidden" aria-hidden="true">
@@ -74,9 +102,9 @@
                 <input type="email" name="email" id="email">
                 <input type="checkbox" name="signup" id="signup"/>
                 <label for="signup">I consent to receive emails from EveryDoctor</label>
-              <button class="smaller">Signup</button>
+                <button class="smaller">Signup</button>
               </section>
-              
+
             </form>
           </div>
 

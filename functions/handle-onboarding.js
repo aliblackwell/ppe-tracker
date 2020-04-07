@@ -25,24 +25,35 @@ app.post(
       .contains("+")
       .withMessage("Please remove the area code.")
       .custom((phone, { req }) => {
-        console.log("uh hello?!?")
         const mobile = formatMobile(req.body["area-code"], req.body.mobile)
-        console.log(mobile)
         return twilio.lookups
           .phoneNumbers(mobile)
           .fetch({ type: ["carrier"] })
-          .then(data => {
-            console.log(data)            
+          .then((data) => {
+            console.log(data)
             return Promise.resolve(true)
           })
           .catch((error) => {
-            console.log('ERROR')
+            console.log("ERROR")
             console.log(error)
-            return Promise.reject('Your number could not be verified.')
+            return Promise.reject("Your number is incorrect.")
           })
       })
-      .withMessage("not allowed!"),
-
+      .custom((phone, { req }) => {
+        const mobile = formatMobile(req.body["area-code"], req.body.mobile)
+        return twilio.verify
+          .services(process.env.TWILIO_VERIFY_SERVICE)
+          .verifications.create({ to: mobile, channel: "sms" })
+          .then((data) => {
+            console.log(data)
+            return Promise.resolve(true)
+          })
+          .catch((error) => {
+            console.log("ERROR")
+            console.log(error)
+            return Promise.reject(error.message)
+          })
+      }),
     fieldRequired("hospital"),
     fieldRequired("gmc-number"),
     fieldRequired("grade"),
@@ -55,7 +66,6 @@ app.post(
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array({ onlyFirstError: true }) })
     }
-
     const mobile = formatMobile(req.body["area-code"], req.body.mobile)
 
     const identifibleHash = createHash(mobile, process.env.SALT_ONE)
@@ -99,7 +109,12 @@ app.post(
 
     try {
       const success = await db.bulk(documents)
-      res.json({ message: "success", update: success })
+      const response = {
+        message: "success",
+        mobile,
+        update: success,
+      }
+      res.json(response)
     } catch (error) {
       return res.status(504).json({ error })
     }
