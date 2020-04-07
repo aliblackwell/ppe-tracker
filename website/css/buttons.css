@@ -23,9 +23,8 @@ button,
   transition: none;
   border-radius: 7px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: var(--title-font-weight);
   font-family: var(--title-font);
-  letter-spacing: 1px;
 }
 
 

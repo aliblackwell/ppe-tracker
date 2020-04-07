@@ -178,7 +178,10 @@ input[type="radio"] {
   width: 0;
 }
 
-.radios label, input[type=radio], input[type=checkbox], label.link {
+.radios label,
+input[type="radio"],
+input[type="checkbox"],
+label.link {
   cursor: pointer;
 }
 
@@ -270,4 +273,15 @@ input#mobile {
 fieldset {
   margin: 0;
   padding: 0;
+}
+
+input[type="checkbox"] {
+  display: block;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 600px) {
+  input[type="checkbox"] {
+    margin-bottom: 3rem;
+  }
 }

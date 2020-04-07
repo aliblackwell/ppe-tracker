@@ -4,11 +4,15 @@
   font-style: normal;
 }
 
-.title-text,
+.title-text {
+  font-family: var(--primary-title-font), sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
 label,
 legend {
   font-family: var(--title-font), sans-serif;
-  letter-spacing: 1px;
   font-weight: var(--title-font-weight);
   font-style: normal;
 }
@@ -54,7 +58,6 @@ h5,
 h6 {
   clear: both;
   font-family: var(--title-font), sans-serif;
-  letter-spacing: 1px;
   font-weight: var(--title-font-weight);
   font-style: normal;
 }
@@ -110,7 +113,6 @@ blockquote {
 blockquote::before {
   content: "“";
   font-family: var(--title-font);
-  letter-spacing: 1px;
   line-height: 0.5;
   font-weight: var(--title-font-weight);
   font-size: 6rem;
@@ -133,7 +135,6 @@ cite {
 strong {
   font-family: var(--title-font);
   font-weight: var(--title-font-weight);
-  letter-spacing: 1px;
 }
 
 cite img {

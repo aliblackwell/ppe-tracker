@@ -1,5 +1,5 @@
 :root {
-  --text-jumbo: 2rem;
+  --text-jumbo: 48px;
   --text-large: 1.2rem;
   --text-medium: 20px;
   --text-small: 0.8rem;
@@ -7,10 +7,11 @@
   --box-width: 35rem;
   --outline-focus: #02042f;
 
+  --primary-title-font:  forma-djr-deck;
   --body-font: neue-haas-unica;
   --body-font-weight: 400;
-  --title-font:  forma-djr-deck;
-  --title-font-weight: 700;
+  --title-font: neue-haas-unica;
+  --title-font-weight: 600;
 
   --light-button-bg: #02042f;
   --light-button-bg-active: #323454;
@@ -46,7 +47,7 @@ Core breakpoints
 
 @media (max-width: 600px) {
   :root {
-    --text-jumbo: 2.5rem;
+    --text-jumbo: 2rem;
     --text-medium: 16px;
   }
 }
