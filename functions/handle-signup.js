@@ -11,7 +11,6 @@ app.post(
     upload.none(), // enable req.body.{form[name]} below using multer
     body("first-name").not().isEmpty().withMessage("This field is required."),
     body("surname").not().isEmpty().withMessage("This field is required."),
-    body("signup").not().isEmpty().withMessage("Please provide your consent."),
     body("email").isEmail().normalizeEmail().withMessage("Please check this is a valid email."),
   ],
   async (req, res, next) => {
@@ -28,7 +27,6 @@ app.post(
       email: req.body.email,
       "first-name": req.body["first-name"],
       surname: req.body.surname,
-      "marketing-consent": req.body.signup,
     }
 
     try {

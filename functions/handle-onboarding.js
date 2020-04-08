@@ -85,11 +85,6 @@ app.post(
       ["gmc-number"]: req.body["gmc-number"],
     }
 
-    req.body["first-name"] && (user["first-name"] = req.body["first-name"])
-    req.body["surname"] && (user["surname"] = req.body["surname"])
-    req.body["email"] && (user["email"] = req.body["email"])
-    req.body["signup"] && (user["marketing-consent"] = req.body["signup"])
-
     const answerBlock = {
       _id: `answer:${todayBasedIdentifier}`,
       user: anonymousHash,
