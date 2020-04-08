@@ -75,19 +75,22 @@
         </section>
 
         <div class="submission-success hidden" aria-hidden="true">
-          <p>Thank you so much for joining our campaign.</p>
           <div id="double-submit-success" class="hidden" aria-hidden="true">
-            <p>However, it looks like you are already participating; your mobile number is already in our database.</p>
+            <p>It looks like you are already participating; your mobile number is already in our database.</p>
             <p>If this wasn't you,
-              <a href="mailto:everydoctoruk@gmail.com">please contact us</a>
+              <a href="mailto:ask@everydoctor.org.uk">please contact us</a>
               and we will correct it.</p>
           </div>
-          <p>Please do spread the word:</p>
+          <p>Thank you so much for signing up to the join this critical effort.</p>
+
+          <p>It's important that you ask colleagues to join this effort. The more doctors who participate regularly the more accurate the picture we'll build.</p>
+
           {% include 'partials/sharer.njk' %}
           <p>We will text you soon. Please text back!</p>
 
           <div id="signup-form-wrapper">
-            <p>Finally, please provide your name and email if you would like to sign up to our mailing list.</p>
+            <p>Finally, if you'd like to stay in touch with how we're using this information to win critical changes please join our mailing list.
+            </p>
             <p aria-hidden="true" class="hidden" id="signup-success">Thank you so much for signing up.</p>
             <p aria-hidden="true" class="hidden" id="duplicate-email">It looks like your email is already in the database.</p>
             <form name="signup-form" id="signup-form" action="/.netlify/functions/handle-signup" novalidate="novalidate">
@@ -120,6 +123,13 @@
 
           <form name="onboarding-form" id="onboarding-form" action="/.netlify/functions/handle-onboarding" novalidate="novalidate">
             <section class="questions">
+              <div id="guidance-read-wrapper">
+                <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
+                <label class="link" for="guidance-read">Check this box to confirm you have read and understood our thirty second
+                  <a href="" target="_blank">summary of World Health Organisation standards for PPE.</a>
+                </label>
+
+              </div>
               <div class="question" id="question-one">
                 <img alt="1" src="/img/one.svg"/>
                 <fieldset class="radios">
@@ -162,13 +172,7 @@
                   </div>
                 </fieldset>
               </div>
-              <div id="guidance-read-wrapper">
-                <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
-                <label class="link" for="guidance-read">Check this box to confirm you have read and understood our thirty second
-                  <a href="" target="_blank">summary of World Health Organisation standards for PPE.</a>
-                </label>
 
-              </div>
             </section>
 
             <p>Thank you.</p>

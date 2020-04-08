@@ -112,12 +112,12 @@ form input:last-child {
 }
 
 input[type="checkbox"] {
-  width: 1.5rem;
+  width: auto;
   float: left;
   transform: scale(1.4);
   top: 0.4rem;
   position: relative;
-  margin: 0 0.25rem 0 0;
+  margin: 0 1rem 0 0;
 }
 .inline-form {
   display: flex;

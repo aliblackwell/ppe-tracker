@@ -23,8 +23,9 @@ button,
   transition: none;
   border-radius: 7px;
   text-decoration: none;
-  font-weight: var(--title-font-weight);
-  font-family: var(--title-font);
+  font-weight: var(--button-font-weight);
+  font-family: var(--button-font);
+  text-transform: uppercase;
 }
 
 

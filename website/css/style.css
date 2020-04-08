@@ -24,19 +24,32 @@ h1.logo {
   padding: 12px;
 }
 
-a.more-info {
+a.more-info.button.smaller {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border: 2px solid var(--light-button-bg);
   color: var(--text-color-dark);
+}
+
+a.more-info:hover {
   text-decoration: underline;
-  font-family: var(--title-font);
-  font-weight: var(--title-font-weight);
-  font-size: var(--text-small);
-  margin: 0 auto 1rem auto;
-  display: inline-block;
 }
 
 p.hashtag {
   margin: 0.5rem auto 2.5rem auto;
   line-height: 1;
+}
+
+@media (max-width: 600px) {
+  a.more-info.button.smaller {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+  p.hashtag {
+    margin: 1.5rem auto 2.5rem auto;
+  }
 }
 
 .content {
@@ -294,7 +307,7 @@ label.link {
   font-family: var(--body-font);
   font-weight: 400;
   display: block;
- 
+
   font-size: var(--text-small);
   line-height: 1.4;
 }
@@ -310,4 +323,12 @@ label.link + a {
 
 .loading {
   text-align: center;
+}
+
+#guidance-read-wrapper {
+  float: left;
+}
+
+#question-one {
+  clear: left;
 }
