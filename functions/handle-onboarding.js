@@ -44,6 +44,12 @@ app.post(
             return Promise.reject("Your number is incorrect.")
           })
       }),
+    body("gmc-number")
+      .not()
+      .isEmpty()
+      .withMessage("This field is required")
+      .isLength({ min: 7, max: 7 })
+      .withMessage("Please enter the correct format."),
     fieldRequired("guidance-read"),
     validateAnswer("answer-one"),
     validateAnswer("answer-two"),
@@ -52,12 +58,7 @@ app.post(
       .not()
       .isEmpty()
       .custom((hospital) => gotHospital(hospital)),
-    body("gmc-number")
-      .not()
-      .isEmpty()
-      .withMessage("This field is required")
-      .isLength({ min: 7, max: 7 })
-      .withMessage("Please enter the correct format."),
+
     body("grade", "Please ensure you choose from the list.")
       .not()
       .isEmpty()
