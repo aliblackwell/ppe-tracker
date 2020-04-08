@@ -1,4 +1,4 @@
-[
+module.exports = [
   "Airedale NHS Foundation Trust",
   "Alder Hey Children's NHS Foundation Trust",
   "Ashford and St Peter's Hospitals NHS Foundation Trust",

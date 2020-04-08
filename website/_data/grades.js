@@ -1,4 +1,4 @@
-[
+module.exports = [
   "Foundation doctor",
   "SHO",
   "Registrar",

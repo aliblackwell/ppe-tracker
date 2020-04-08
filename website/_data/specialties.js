@@ -1,4 +1,4 @@
-[
+module.exports = [
   "Acute internal medicine",
   "Allergy",
   "Anaesthetics",
