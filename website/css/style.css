@@ -325,9 +325,6 @@ label.link + a {
   text-align: center;
 }
 
-#guidance-read-wrapper {
-  margin-bottom: 1.5rem;
-}
  
 
 a.reading-link {
@@ -335,4 +332,8 @@ a.reading-link {
   padding-right: 2em;
   background: url('/img/new-tab.svg') no-repeat center right;
 
+}
+
+#guidance-read-wrapper {
+  margin-bottom: 1.5rem;
 }
