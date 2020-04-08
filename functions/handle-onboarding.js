@@ -12,15 +12,13 @@ const {
   gotSpecialty,
   gotGrade,
   gotHospital,
+  gotCare,
 } = require("./helpers/form-validators")
 
 app.post(
   "*",
   [
     upload.none(), // enable req.body.{form[name]} below using multer
-    validateAnswer("answer-one"),
-    validateAnswer("answer-two"),
-    validateAnswer("answer-three"),
     body("area-code").not().isEmpty().withMessage("Please select an area code."),
     body("mobile", "We need your mobile to regularly text you the questions.")
       .not()
@@ -46,6 +44,10 @@ app.post(
             return Promise.reject("Your number is incorrect.")
           })
       }),
+    fieldRequired("guidance-read"),
+    validateAnswer("answer-one"),
+    validateAnswer("answer-two"),
+    validateAnswer("answer-three"),
     body("hospital", "Please ensure you choose from the list.")
       .not()
       .isEmpty()
@@ -60,7 +62,12 @@ app.post(
       .not()
       .isEmpty()
       .custom((grade) => gotGrade(grade)),
-    fieldRequired("guidance-read"),
+
+    body("care", "Please ensure you choose from the list.")
+      .not()
+      .isEmpty()
+      .custom((care) => gotCare(care)),
+
     body("specialty", "Please ensure you choose from the list.")
       .not()
       .isEmpty()
@@ -95,6 +102,10 @@ app.post(
     }),
   ],
   async (req, res, next) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array({ onlyFirstError: true }) })
+    }
     const mobile = formatMobile(req.body["area-code"], req.body.mobile)
 
     const identifibleHash = createHash(mobile, process.env.SALT_ONE)

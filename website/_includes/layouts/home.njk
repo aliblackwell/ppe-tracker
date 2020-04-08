@@ -161,14 +161,13 @@
             <p>We are currently campaigning for the UK government to bring its PPE guidance in line with WHO recommendations.</p>
             <p>Before answering the following three questions you must have read and understood our thirty second summary of World Health Organisation standards for PPE.
             </p>
-
-            <p>It is critical that you understand the guidance and answer the questions accordingly.</p>
-
-            <p>
-              <a class="reading-link" href="" target="_blank">Please read the summary now.</a>
-            </p>
-
             <div id="guidance-read-wrapper">
+              <p>It is critical that you understand the guidance and answer the questions accordingly.</p>
+
+              <p>
+                <a class="reading-link" href="" target="_blank">Please read the summary now.</a>
+              </p>
+
               <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
               <label class="link" for="guidance-read">I have read and understood the guidance.</label>
             </div>
@@ -226,7 +225,7 @@
               <input type="text" id="hospital" name="hospital" data-parent="medical-details"/>
               <div id="care-container">
                 <label for="care">You mostly work in</label>
-                <div class="styled-select">
+                <div class="styled-select" id="styled-select-care">
                   <select id="care" name="care" data-parent="care-container">
                     <option value="" selected="selected">Please select</option>
                     {% for care in cares %}
@@ -237,7 +236,7 @@
               </div>
               <div id="grade-container">
                 <label for="grade">Your grade</label>
-                <div class="styled-select">
+                <div class="styled-select" id="styled-select-grade">
                   <select id="grade" name="grade" data-parent="grade-container">
                     <option value="" selected="selected">Please select</option>
                     {% for grade in grades %}

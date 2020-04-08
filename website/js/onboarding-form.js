@@ -91,9 +91,9 @@ function handleHumanErrors(errors, beginCb, endCb) {
       errorMessage.innerHTML = error.msg
       if (error.param === "area-code" || error.param === "mobile") {
         parentElement.querySelector("legend").insertAdjacentElement("afterend", errorMessage)
-      } else if (error.param === "grade") {
+      } else if (error.param === "grade" || error.param === "care") {
         parentElement
-          .querySelector(".styled-select")
+          .querySelector(`#styled-select-${error.param}`)
           .insertAdjacentElement("beforebegin", errorMessage)
       } else {
         element.insertAdjacentElement("beforebegin", errorMessage)
