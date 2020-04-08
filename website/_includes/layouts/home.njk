@@ -118,66 +118,11 @@
 
         <div class="form-wrapper" id="onboarding-form-wrapper" aria-hidden="false">
           <p>We're collecting real-time data from medics so that we can advocate for the safety of all NHS staff and our patients.</p>
-          <p>Will you commit to answering three simple questions regularly?
-          </p>
 
+          <p>Will you commit to regularly answering our questions?</p>
+
+          <p>If so, please provide your mobile number so we can text you regularly, and your GMC number so we know you're a doctor.</p>
           <form name="onboarding-form" id="onboarding-form" action="/.netlify/functions/handle-onboarding" novalidate="novalidate">
-            <section class="questions">
-              <div id="guidance-read-wrapper">
-                <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
-                <label class="link" for="guidance-read">Check this box to confirm you have read and understood our thirty second
-                  <a href="" target="_blank">summary of World Health Organisation standards for PPE.</a>
-                </label>
-
-              </div>
-              <div class="question" id="question-one">
-                <img alt="1" src="/img/one.svg"/>
-                <fieldset class="radios">
-                  <legend>
-                    Did you have access to the correct type of PPE mask throughout your shift today?
-                  </legend>
-                  <div id="answer-one" data-parent="question-one">
-                    <input id="question-1-yes" type="radio" value="yes" name="answer-one"/>
-                    <label for="question-1-yes">Yes</label>
-                    <input id="question-1-no" type="radio" value="no" name="answer-one"/>
-                    <label for="question-1-no" class="negative">No</label>
-                  </div>
-                </fieldset>
-              </div>
-              <div class="question" id="question-two">
-                <img alt="2" src="/img/two.svg"/>
-                <fieldset class="radios">
-                  <legend>
-                    Did you have access to all 4 elements of WHO recommended PPE throughout your shift when assessing suspected COVID-19 patients: mask, eye protection, gown and gloves.
-                  </legend>
-                  <div id="answer-two" data-parent="question-two">
-                    <input id="question-2-yes" type="radio" value="yes" name="answer-two"/>
-                    <label for="question-2-yes">Yes</label>
-                    <input id="question-2-no" type="radio" value="no" name="answer-two"/>
-                    <label for="question-2-no" class="negative">No</label>
-                  </div>
-                </fieldset>
-              </div>
-              <div class="question" id="question-three">
-                <img alt="3" src="/img/three.svg"/>
-                <fieldset class="radios">
-                  <legend>
-                    Did you have access to COVID-19 testing if you required it?
-                  </legend>
-                  <div id="answer-three" data-parent="question-three">
-                    <input id="question-3-yes" type="radio" value="yes" name="answer-three"/>
-                    <label for="question-3-yes">Yes</label>
-                    <input id="question-3-no" type="radio" value="no" name="answer-three"/>
-                    <label for="question-3-no" class="negative">No</label>
-                  </div>
-                </fieldset>
-              </div>
-
-            </section>
-
-            <p>Thank you.</p>
-            <p>Please also provide your mobile number so we can text you these questions regularly, and your GMC number, so we know you're a doctor.</p>
-
             <section class="questions" id="mobile-number">
               <aside class="privacy">
                 {% include 'partials/privacy-lock.njk' %}
@@ -211,11 +156,85 @@
               </div>
             </section>
 
+            <p>Thank you.</p>
+
+            <p>We are currently campaigning for the UK government to bring its PPE guidance in line with WHO recommendations.</p>
+            <p>Before answering the following three questions you must read and understood our thirty second summary of World Health Organisation standards for PPE.
+            </p>
+
+            <p>Any failure to do this would compromise our reporting.</p>
+
+            <p>
+              <a class="reading-link" href="" target="_blank">Please read the summary now.</a>
+            </p>
+
+            <div id="guidance-read-wrapper">
+              <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
+              <label class="link" for="guidance-read">I have read and understood the guidance.</label>
+            </div>
+
+            <section class="questions">
+              <div class="question" id="question-one">
+                <img alt="1" src="/img/one.svg"/>
+                <fieldset class="radios">
+                  <legend>
+                    At any point today did you perform an AGP procedure, or were you in a clinical area with possible or confirmed cases of COVID-19 where AGP procedures are regularly performed?
+                  </legend>
+                  <div id="answer-one" data-parent="question-one">
+                    <input id="question-1-yes" type="radio" value="yes" name="answer-one"/>
+                    <label for="question-1-yes">Yes</label>
+                    <input id="question-1-no" type="radio" value="no" name="answer-one"/>
+                    <label for="question-1-no" class="negative">No</label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="question" id="question-two">
+                <img alt="2" src="/img/two.svg"/>
+                <fieldset class="radios">
+                  <legend>
+                    Did you have access to all 4 elements of appropriate PPE: mask, eye protection, gown and gloves?
+                  </legend>
+                  <div id="answer-two" data-parent="question-two">
+                    <input id="question-2-yes" type="radio" value="yes" name="answer-two"/>
+                    <label for="question-2-yes">Yes</label>
+                    <input id="question-2-no" type="radio" value="no" name="answer-two"/>
+                    <label for="question-2-no" class="negative">No</label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="question" id="question-three">
+                <img alt="3" src="/img/three.svg"/>
+                <fieldset class="radios">
+                  <legend>
+                    Do you have access to COVID-19 testing if you require it?
+                  </legend>
+                  <div id="answer-three" data-parent="question-three">
+                    <input id="question-3-yes" type="radio" value="yes" name="answer-three"/>
+                    <label for="question-3-yes">Yes</label>
+                    <input id="question-3-no" type="radio" value="no" name="answer-three"/>
+                    <label for="question-3-no" class="negative">No</label>
+                  </div>
+                </fieldset>
+              </div>
+
+            </section>
+
             <p>We need to know where you work and what you do, so we can pinpoint problems across the NHS.</p>
 
             <section class="questions" id="medical-details">
               <label for="hospital">Your local NHS Trust or CCG</label>
               <input type="text" id="hospital" name="hospital" data-parent="medical-details"/>
+              <div id="care-container">
+                <label for="care">You mostly work in</label>
+                <div class="styled-select">
+                  <select id="care" name="care" data-parent="care-container">
+                    <option value="" selected="selected">Please select</option>
+                    {% for care in cares %}
+                      <option value="{{care}}">{{care}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
               <div id="grade-container">
                 <label for="grade">Your grade</label>
                 <div class="styled-select">
@@ -231,6 +250,7 @@
                 <label for="specialty">Your specialty</label>
                 <input type="text" id="specialty" name="specialty" data-parent="specialty-container"/>
               </div>
+
             </section>
             <p>By submitting this form, you are consenting to EveryDoctor using your anonymised responses to lobby Government, NHS and raise attention to the issues facing the NHS as identified by doctors like you. You can unsubscribe at any time by texting back STOP.
             </p>

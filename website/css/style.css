@@ -308,7 +308,7 @@ label.link {
   font-weight: 400;
   display: block;
 
-  font-size: var(--text-small);
+  font-size: var(--text-medium);
   line-height: 1.4;
 }
 
@@ -326,9 +326,13 @@ label.link + a {
 }
 
 #guidance-read-wrapper {
-  float: left;
+  margin-bottom: 1.5rem;
 }
+ 
 
-#question-one {
-  clear: left;
+a.reading-link {
+  display: inline-block;
+  padding-right: 2em;
+  background: url('/img/new-tab.svg') no-repeat center right;
+
 }
