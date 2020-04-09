@@ -4,14 +4,13 @@ const app = require("./helpers/express")
 const serverless = require("serverless-http")
 const upload = require("./helpers/upload")
 const twilio = require("./helpers/twilio")
-const { body, validationResult, check, custom } = require("express-validator")
+const { body, validationResult, check } = require("express-validator")
 const {
   fieldRequired,
   validateAnswer,
   formatMobile,
   gotSpecialty,
   gotGrade,
-  gotHospital,
   gotCare,
 } = require("./helpers/form-validators")
 
@@ -57,7 +56,7 @@ app.post(
     body("hospital", "Please ensure you choose from the list.")
       .not()
       .isEmpty()
-      .custom((hospital) => gotHospital(hospital)),
+      .withMessage("Please ensure you choose from the list."),
 
     body("grade", "Please ensure you choose from the list.")
       .not()
