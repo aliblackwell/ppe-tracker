@@ -57,8 +57,18 @@ button.smaller,
 }
 
 button.smaller.inline {
-  display: inline;
-  width: auto;
+  box-shadow: none;
+  padding: 0;
+  font-family: var(--body-font);
+  font-weight: 400;
+  display: inline-block;
+  color: var(--text-color-dark);
+  background: none;
+  text-decoration: underline;
+  text-transform: none;
+  font-size: var(--text-medium);
+  white-space: normal;
+  overflow-wrap: normal;
 }
 
 .light button.smaller,

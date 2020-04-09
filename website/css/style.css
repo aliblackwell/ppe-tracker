@@ -135,8 +135,8 @@ footer a {
 }
 
 .hidden {
-  display: none;
-  transition: all 1s linear;
+   
+  
 }
 
 .messages {
@@ -331,6 +331,7 @@ label.link + a {
 a.reading-link {
   display: inline-block;
   padding-right: 2em;
+  font-size: var(--text-large);
   background: url('/img/new-tab.svg') no-repeat center right;
 
 }

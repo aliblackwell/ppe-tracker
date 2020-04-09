@@ -114,7 +114,6 @@ form input:last-child {
 input[type="checkbox"] {
   width: auto;
   float: left;
-  transform: scale(1.4);
   top: 0.4rem;
   position: relative;
   margin: 0 1rem 0 0;
@@ -280,15 +279,4 @@ input#mobile {
 fieldset {
   margin: 0;
   padding: 0;
-}
-
-input[type="checkbox"] {
-  display: block;
-  margin-bottom: 3rem;
-}
-
-@media (max-width: 600px) {
-  input[type="checkbox"] {
-    margin-bottom: 3rem;
-  }
 }
