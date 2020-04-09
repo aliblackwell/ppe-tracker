@@ -228,6 +228,9 @@ function handleForm(form) {
             }
           )
         } else {
+          if (result.success && result.success.identifiers.length > 1) {
+            form.handleConflict()
+          }
           if (result.update) {
             let updateErrors = result.update.map((update) => update.error)
             if (updateErrors.includes("conflict")) {

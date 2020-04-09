@@ -51,9 +51,10 @@
             <h1>That code wasn't recognised.
             </h1>
             <p>Please double-check and try again.</p>
-            <p>If you need to correct your number: </p>
+            <p>If you need to correct your number:
+            </p>
             <button class="smaller inline go-back">Go back and try again</button>
-         
+
           </div>
 
           <h1>We just sent a code to
@@ -91,8 +92,7 @@
           <div id="signup-form-wrapper">
             <p>Finally, if you'd like to stay in touch with how we're using this information to win critical changes please join our mailing list.
             </p>
-            <p aria-hidden="true" class="hidden" id="signup-success">Thank you so much for signing up.</p>
-            <p aria-hidden="true" class="hidden" id="duplicate-email">It looks like your email is already in the database.</p>
+
             <form name="signup-form" id="signup-form" action="/.netlify/functions/handle-signup" novalidate="novalidate">
               <section class="questions">
 
@@ -108,6 +108,11 @@
 
             </form>
           </div>
+
+          
+          <p aria-hidden="true" class="hidden" id="duplicate-email">It looks like your email is already in the database.</p>
+
+          <p aria-hidden="true" class="hidden" id="signup-success">Thank you so much for signing up.</p>
 
           <p>All best wishes,</p>
           <p>
