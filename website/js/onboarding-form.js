@@ -66,6 +66,9 @@ function handleHumanErrors(errors, beginCb, endCb) {
   beginCb()
   errors.map((error) => {
     let element = document.querySelector(`#${error.param}`)
+    const labelSelector = element.getAttribute('data-label')
+    const labelContent = document.querySelector(labelSelector).innerHTML
+
     let parentId = element.getAttribute("data-parent")
       ? element.getAttribute("data-parent")
       : error.param
@@ -80,7 +83,7 @@ function handleHumanErrors(errors, beginCb, endCb) {
       let errorListItem = document.createElement("li")
       errorListItem.setAttribute("class", `msg-${error.param}`)
       let errorLink = document.createElement("a")
-      errorLink.innerHTML = error.param
+      errorLink.innerHTML = labelContent
       errorLink.setAttribute("href", `#${parentId}`)
       errorListItem.innerHTML = errorLink.outerHTML
       errorList.insertAdjacentElement("beforeend", errorListItem)
@@ -166,6 +169,7 @@ const signupForm = {
   handleSuccess: () => {
     showEl(document.querySelector("#signup-success"))
     hideEl(humanErrorMessages)
+    hideEl(doubleSubmitSuccess)
   },
 }
 

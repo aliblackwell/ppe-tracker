@@ -33,6 +33,18 @@
             <div class="sk-circle12 sk-circle"></div>
           </div>Loading</div>
 
+        <div id="signup-success" aria-hidden="true" class="hidden">
+
+          <p>Thank you so much for signing up to our mailing list.</p>
+
+          <p aria-hidden="true" class="hidden" id="duplicate-email">(It looks like your email was already in the database!)</p>
+
+          <p>If you haven't already please consider joining EveryDoctor. You'll join over 1,000 doctors who are committed to an NHS where patients and staff are safe.</p>
+          <p>
+            <a href="https://www.everydoctor.org.uk/join">https://www.everydoctor.org.uk/join</a>
+          </p>
+        </div>
+
         <section id="database-error" class="messages hidden" aria-hidden="true">
           <h1>There was an error connecting to the database</h1>
           <p>Please tap the button below to try again.</p>
@@ -42,7 +54,7 @@
 
         <section id="human-error" class="messages hidden" aria-hidden="true">
           <h1>Unable to submit the form</h1>
-          <p>Please check the below and try again:</p>
+          <p>Please check the following fields:</p>
           <ul id="error-list"></ul>
         </section>
 
@@ -61,11 +73,12 @@
             <span class="mobile-number"></span></h1>
 
           <form name="verify-number-form" id="verify-number-form" action="/.netlify/functions/verify-number">
-
-            <label for="verification">
-              Please enter the code to verify your number.
-            </label>
-            <input type="tel" name="verification" id="verification"/>
+            <div id="verify-number">
+              <label for="verification">
+                Please enter the code to verify your number.
+              </label>
+              <input type="tel" name="verification" id="verification" data-parent="verify-number" data-label="label[for=verification]"/>
+            </div>
             <input type="hidden" name="mobile" id="hidden-mobile"/>
             <button class="smaller">Verify</button>
           </form>
@@ -82,11 +95,14 @@
               <a href="mailto:ask@everydoctor.org.uk">please contact us</a>
               and we will correct it.</p>
           </div>
-          <p>Thank you so much for signing up to the join this critical effort.</p>
+          <p>Thank you so much for signing up to join this critical effort.</p>
 
-          <p>It's important that you ask colleagues to join this effort. The more doctors who participate regularly the more accurate the picture we'll build.</p>
+          <p>It's important that you ask colleagues to join too.</p>
+
+          <p>The more doctors who participate regularly the more accurate the picture we'll build.</p>
 
           {% include 'partials/sharer.njk' %}
+
           <p>We will text you soon. Please text back!</p>
 
           <div id="signup-form-wrapper">
@@ -96,31 +112,23 @@
             <form name="signup-form" id="signup-form" action="/.netlify/functions/handle-signup" novalidate="novalidate">
               <section class="questions">
 
-                <label for="first-name">Your first name</label>
-                <input type="text" name="first-name" id="first-name">
-                <label for="surname">Your surname</label>
-                <input type="text" name="surname" id="surname">
+                <div id="your-first-name">
+                  <label for="first-name">Your first name</label>
+                  <input type="text" name="first-name" id="first-name" data-parent="your-first-name" data-label="label[for=first-name]">
+                </div>
+                <div id="your-surname">
+                  <label for="surname">Your surname</label>
+                  <input type="text" name="surname" id="surname" data-parent="your-surname" data-label="label[for=surname]">
+                </div>
 
-                <label for="email">Your email</label>
-                <input type="email" name="email" id="email">
+                <div id="your-email">
+                  <label for="email">Your email</label>
+                  <input type="email" name="email" id="email" data-parent="your-email" data-label="label[for=email]">
+                </div>
                 <button class="smaller">Signup</button>
               </section>
 
             </form>
-          </div>
-
-          
-
-          <div id="signup-success">
-
-            <p aria-hidden="true" class="hidden" id="signup-success">Thank you so much for signing up.</p>
-
-            <p aria-hidden="true" class="hidden" id="duplicate-email">(It looks like your email was already in the database!)</p>
-
-            <p>If you haven't already please consider joining EveryDoctor. You'll join over 1,000 doctors who are committed to an NHS where patients and staff are safe.</p>
-            <p>
-              <a href="https://www.everydoctor.org.uk/join">https://www.everydoctor.org.uk/join</a>
-            </p>
           </div>
 
           <p>All best wishes,</p>
@@ -149,7 +157,7 @@
                   <div class="flex-item">
                     <label for="area-code" class="screen-reader-text">Area code</label>
                     <div class="styled-select mobile">
-                      <select id="area-code" name="area-code" data-parent="mobile-number">
+                      <select id="area-code" name="area-code" data-parent="mobile-number" data-label="label[for=area-code]">
                         <option value="+44" selected="selected">+44</option>
 
                         {% for country in countrycodes | orderAscending %}
@@ -160,13 +168,13 @@
                   </div>
                   <div class="flex-item mobile-input-wrapper">
                     <label for="mobile" class="screen-reader-text">Mobile number</label>
-                    <input name="mobile" id="mobile" type="tel" data-parent="mobile-number">
+                    <input name="mobile" id="mobile" type="tel" data-parent="mobile-number" data-label="label[for=mobile]">
                   </div>
                 </div>
               </fieldset>
               <div id="gmc-number-container">
                 <label for="gmc-number">GMC number</label>
-                <input name="gmc-number" id="gmc-number" type="tel" data-parent="gmc-number-container">
+                <input name="gmc-number" id="gmc-number" type="tel" data-parent="gmc-number-container" data-label="label[for=gmc-number]">
               </div>
             </section>
 
@@ -182,7 +190,7 @@
                 <a class="reading-link" href="https://www.everydoctor.org.uk/ppe-check" target="_blank">Please read the summary now.</a>
               </p>
 
-              <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
+              <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper" data-label="label[for=guidance-read]"/>
               <label class="link" for="guidance-read">I have read and understood the guidance.</label>
             </div>
 
@@ -190,10 +198,10 @@
               <div class="question" id="question-one">
                 <img alt="1" src="/img/one.svg"/>
                 <fieldset class="radios">
-                  <legend>
+                  <legend id="question-one-legend">
                     At any point today were you in an area where AGP procedures are performed?
                   </legend>
-                  <div id="answer-one" data-parent="question-one">
+                  <div id="answer-one" data-parent="question-one" data-label="#question-one-legend">
                     <input id="question-1-yes" type="radio" value="yes" name="answer-one"/>
                     <label for="question-1-yes">Yes</label>
                     <input id="question-1-no" type="radio" value="no" name="answer-one"/>
@@ -204,10 +212,10 @@
               <div class="question" id="question-two">
                 <img alt="2" src="/img/two.svg"/>
                 <fieldset class="radios">
-                  <legend>
+                  <legend id="question-two-legend">
                     Did you have access to each element of WHO recommended PPE?
                   </legend>
-                  <div id="answer-two" data-parent="question-two">
+                  <div id="answer-two" data-parent="question-two" data-label="#question-two-legend">
                     <input id="question-2-yes" type="radio" value="yes" name="answer-two"/>
                     <label for="question-2-yes">Yes</label>
                     <input id="question-2-no" type="radio" value="no" name="answer-two"/>
@@ -218,10 +226,10 @@
               <div class="question" id="question-three">
                 <img alt="3" src="/img/three.svg"/>
                 <fieldset class="radios">
-                  <legend>
+                  <legend id="question-three-legend">
                     Do you have access to COVID-19 testing for yourself or colleagues if you require it?
                   </legend>
-                  <div id="answer-three" data-parent="question-three">
+                  <div id="answer-three" data-parent="question-three" data-label="#question-three-legend">
                     <input id="question-3-yes" type="radio" value="yes" name="answer-three"/>
                     <label for="question-3-yes">Yes</label>
                     <input id="question-3-no" type="radio" value="no" name="answer-three"/>
@@ -236,11 +244,11 @@
 
             <section class="questions" id="medical-details">
               <label for="hospital">Your local NHS Trust or CCG</label>
-              <input type="text" id="hospital" name="hospital" data-parent="medical-details"/>
+              <input type="text" id="hospital" name="hospital" data-parent="medical-details" data-label="label[for=hospital]"/>
               <div id="care-container">
                 <label for="care">You mostly work in</label>
                 <div class="styled-select" id="styled-select-care">
-                  <select id="care" name="care" data-parent="care-container">
+                  <select id="care" name="care" data-parent="care-container" data-label="label[for=care]">
                     <option value="" selected="selected">Please select</option>
                     {% for care in cares %}
                       <option value="{{care}}">{{care}}</option>
@@ -251,7 +259,7 @@
               <div id="grade-container">
                 <label for="grade">Your grade</label>
                 <div class="styled-select" id="styled-select-grade">
-                  <select id="grade" name="grade" data-parent="grade-container">
+                  <select id="grade" name="grade" data-parent="grade-container" data-label="label[for=grade]">
                     <option value="" selected="selected">Please select</option>
                     {% for grade in grades %}
                       <option value="{{grade}}">{{grade}}</option>
@@ -261,7 +269,7 @@
               </div>
               <div id="specialty-container">
                 <label for="specialty">Your specialty</label>
-                <input type="text" id="specialty" name="specialty" data-parent="specialty-container"/>
+                <input type="text" id="specialty" name="specialty" data-parent="specialty-container" data-label="label[for=specialty]"/>
               </div>
 
             </section>

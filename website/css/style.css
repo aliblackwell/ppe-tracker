@@ -335,6 +335,11 @@ a.reading-link {
 
 }
 
-#guidance-read-wrapper {
+#guidance-read-wrapper,
+#verify-number {
+  margin-bottom: 1.5rem;
+}
+
+#signup-form .questions div {
   margin-bottom: 1.5rem;
 }
