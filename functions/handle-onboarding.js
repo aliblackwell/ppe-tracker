@@ -32,7 +32,7 @@ app.post(
         const mobile = formatMobile(req.body["area-code"], req.body.mobile)
         return twilio.lookups
           .phoneNumbers(mobile)
-          .fetch({ type: ["carrier"] })
+          .fetch()
           .then((data) => {
             console.log(data)
             return Promise.resolve(true)
