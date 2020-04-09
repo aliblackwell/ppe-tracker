@@ -109,172 +109,178 @@
             </form>
           </div>
 
-          
           <p aria-hidden="true" class="hidden" id="duplicate-email">It looks like your email is already in the database.</p>
 
-          <p aria-hidden="true" class="hidden" id="signup-success">Thank you so much for signing up.</p>
+          <div id="signup-success">
 
-          <p>All best wishes,</p>
-          <p>
-            <strong>Dr Julia Patterson,</strong><br/>
-            EveryDoctor lead
-          </p>
-        </div>
+            <p aria-hidden="true" class="hidden" id="signup-success">Thank you so much for signing up.</p>
 
-        <div class="form-wrapper" id="onboarding-form-wrapper" aria-hidden="false">
-          <p>We're collecting real-time data from medics so that we can advocate for the safety of all NHS staff and our patients.</p>
+            <p>If you haven't already please consider joining EveryDoctor. You'll join over 1,000 doctors who are committed to an NHS where patients and staff are safe.</p>
+            <p>
+              <a href="https://www.everydoctor.org.uk/join">https://www.everydoctor.org.uk/join</a>
+            </p>
 
-          <p>Will you commit to regularly answering our questions?</p>
+            <p>All best wishes,</p>
+            <p>
+              <strong>Dr Julia Patterson,</strong><br/>
+              EveryDoctor lead
+            </p>
+          </div>
 
-          <p>If so, please provide your mobile number so we can text you regularly, and your GMC number so we know you're a doctor.</p>
-          <form name="onboarding-form" id="onboarding-form" action="/.netlify/functions/handle-onboarding" novalidate="novalidate">
-            <section class="questions" id="mobile-number">
-              <aside class="privacy">
-                {% include 'partials/privacy-lock.njk' %}
-                All of your personal information will be stored securely, and will never be made public.</aside>
-              <fieldset>
-                <legend>
-                  Mobile number
-                </legend>
-                <div class="aligned-flex">
-                  <div class="flex-item">
-                    <label for="area-code" class="screen-reader-text">Area code</label>
-                    <div class="styled-select mobile">
-                      <select id="area-code" name="area-code" data-parent="mobile-number">
-                        <option value="+44" selected="selected">+44</option>
+          <div class="form-wrapper" id="onboarding-form-wrapper" aria-hidden="false">
+            <p>We're collecting real-time data from medics so that we can advocate for the safety of all NHS staff and our patients.</p>
 
-                        {% for country in countrycodes | orderAscending %}
-                          <option value="{{country.dial_code}}">{{country.dial_code}}</option>
-                        {% endfor %}
-                      </select>
+            <p>Will you commit to regularly answering our questions?</p>
+
+            <p>If so, please provide your mobile number so we can text you regularly, and your GMC number so we know you're a doctor.</p>
+            <form name="onboarding-form" id="onboarding-form" action="/.netlify/functions/handle-onboarding" novalidate="novalidate">
+              <section class="questions" id="mobile-number">
+                <aside class="privacy">
+                  {% include 'partials/privacy-lock.njk' %}
+                  All of your personal information will be stored securely, and will never be made public.</aside>
+                <fieldset>
+                  <legend>
+                    Mobile number
+                  </legend>
+                  <div class="aligned-flex">
+                    <div class="flex-item">
+                      <label for="area-code" class="screen-reader-text">Area code</label>
+                      <div class="styled-select mobile">
+                        <select id="area-code" name="area-code" data-parent="mobile-number">
+                          <option value="+44" selected="selected">+44</option>
+
+                          {% for country in countrycodes | orderAscending %}
+                            <option value="{{country.dial_code}}">{{country.dial_code}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="flex-item mobile-input-wrapper">
+                      <label for="mobile" class="screen-reader-text">Mobile number</label>
+                      <input name="mobile" id="mobile" type="tel" data-parent="mobile-number">
                     </div>
                   </div>
-                  <div class="flex-item mobile-input-wrapper">
-                    <label for="mobile" class="screen-reader-text">Mobile number</label>
-                    <input name="mobile" id="mobile" type="tel" data-parent="mobile-number">
-                  </div>
+                </fieldset>
+                <div id="gmc-number-container">
+                  <label for="gmc-number">GMC number</label>
+                  <input name="gmc-number" id="gmc-number" type="tel" data-parent="gmc-number-container">
                 </div>
-              </fieldset>
-              <div id="gmc-number-container">
-                <label for="gmc-number">GMC number</label>
-                <input name="gmc-number" id="gmc-number" type="tel" data-parent="gmc-number-container">
-              </div>
-            </section>
+              </section>
 
-            <p>Thank you.</p>
+              <p>Thank you.</p>
 
-            <p>We are currently campaigning for the UK government to bring its PPE guidance in line with WHO recommendations.</p>
-            <p>Before answering the following three questions you must have read and understood our thirty second summary of World Health Organisation standards for PPE.
-            </p>
-            <div id="guidance-read-wrapper">
-              <p>It is critical that you understand the guidance and answer the questions accordingly.</p>
-
-              <p>
-                <a class="reading-link" href="https://www.everydoctor.org.uk/ppe-check" target="_blank">Please read the summary now.</a>
+              <p>We are currently campaigning for the UK government to bring its PPE guidance in line with WHO recommendations.</p>
+              <p>Before answering the following three questions you must have read and understood our thirty second summary of World Health Organisation standards for PPE.
               </p>
+              <div id="guidance-read-wrapper">
+                <p>It is critical that you understand the guidance and answer the questions accordingly.</p>
 
-              <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
-              <label class="link" for="guidance-read">I have read and understood the guidance.</label>
-            </div>
+                <p>
+                  <a class="reading-link" href="https://www.everydoctor.org.uk/ppe-check" target="_blank">Please read the summary now.</a>
+                </p>
 
-            <section class="questions">
-              <div class="question" id="question-one">
-                <img alt="1" src="/img/one.svg"/>
-                <fieldset class="radios">
-                  <legend>
-                    At any point today were you in an area where AGP procedures are performed?
-                  </legend>
-                  <div id="answer-one" data-parent="question-one">
-                    <input id="question-1-yes" type="radio" value="yes" name="answer-one"/>
-                    <label for="question-1-yes">Yes</label>
-                    <input id="question-1-no" type="radio" value="no" name="answer-one"/>
-                    <label for="question-1-no" class="negative">No</label>
-                  </div>
-                </fieldset>
-              </div>
-              <div class="question" id="question-two">
-                <img alt="2" src="/img/two.svg"/>
-                <fieldset class="radios">
-                  <legend>
-                    Did you have access to each element of WHO recommended PPE?
-                  </legend>
-                  <div id="answer-two" data-parent="question-two">
-                    <input id="question-2-yes" type="radio" value="yes" name="answer-two"/>
-                    <label for="question-2-yes">Yes</label>
-                    <input id="question-2-no" type="radio" value="no" name="answer-two"/>
-                    <label for="question-2-no" class="negative">No</label>
-                  </div>
-                </fieldset>
-              </div>
-              <div class="question" id="question-three">
-                <img alt="3" src="/img/three.svg"/>
-                <fieldset class="radios">
-                  <legend>
-                    Do you have access to COVID-19 testing for yourself or colleagues if you require it?
-                  </legend>
-                  <div id="answer-three" data-parent="question-three">
-                    <input id="question-3-yes" type="radio" value="yes" name="answer-three"/>
-                    <label for="question-3-yes">Yes</label>
-                    <input id="question-3-no" type="radio" value="no" name="answer-three"/>
-                    <label for="question-3-no" class="negative">No</label>
-                  </div>
-                </fieldset>
+                <input type="checkbox" name="guidance-read" id="guidance-read" data-parent="guidance-read-wrapper"/>
+                <label class="link" for="guidance-read">I have read and understood the guidance.</label>
               </div>
 
-            </section>
-
-            <p>We need to know where you work and what you do, so we can pinpoint problems across the NHS.</p>
-
-            <section class="questions" id="medical-details">
-              <label for="hospital">Your local NHS Trust or CCG</label>
-              <input type="text" id="hospital" name="hospital" data-parent="medical-details"/>
-              <div id="care-container">
-                <label for="care">You mostly work in</label>
-                <div class="styled-select" id="styled-select-care">
-                  <select id="care" name="care" data-parent="care-container">
-                    <option value="" selected="selected">Please select</option>
-                    {% for care in cares %}
-                      <option value="{{care}}">{{care}}</option>
-                    {% endfor %}
-                  </select>
+              <section class="questions">
+                <div class="question" id="question-one">
+                  <img alt="1" src="/img/one.svg"/>
+                  <fieldset class="radios">
+                    <legend>
+                      At any point today were you in an area where AGP procedures are performed?
+                    </legend>
+                    <div id="answer-one" data-parent="question-one">
+                      <input id="question-1-yes" type="radio" value="yes" name="answer-one"/>
+                      <label for="question-1-yes">Yes</label>
+                      <input id="question-1-no" type="radio" value="no" name="answer-one"/>
+                      <label for="question-1-no" class="negative">No</label>
+                    </div>
+                  </fieldset>
                 </div>
-              </div>
-              <div id="grade-container">
-                <label for="grade">Your grade</label>
-                <div class="styled-select" id="styled-select-grade">
-                  <select id="grade" name="grade" data-parent="grade-container">
-                    <option value="" selected="selected">Please select</option>
-                    {% for grade in grades %}
-                      <option value="{{grade}}">{{grade}}</option>
-                    {% endfor %}
-                  </select>
+                <div class="question" id="question-two">
+                  <img alt="2" src="/img/two.svg"/>
+                  <fieldset class="radios">
+                    <legend>
+                      Did you have access to each element of WHO recommended PPE?
+                    </legend>
+                    <div id="answer-two" data-parent="question-two">
+                      <input id="question-2-yes" type="radio" value="yes" name="answer-two"/>
+                      <label for="question-2-yes">Yes</label>
+                      <input id="question-2-no" type="radio" value="no" name="answer-two"/>
+                      <label for="question-2-no" class="negative">No</label>
+                    </div>
+                  </fieldset>
                 </div>
-              </div>
-              <div id="specialty-container">
-                <label for="specialty">Your specialty</label>
-                <input type="text" id="specialty" name="specialty" data-parent="specialty-container"/>
-              </div>
+                <div class="question" id="question-three">
+                  <img alt="3" src="/img/three.svg"/>
+                  <fieldset class="radios">
+                    <legend>
+                      Do you have access to COVID-19 testing for yourself or colleagues if you require it?
+                    </legend>
+                    <div id="answer-three" data-parent="question-three">
+                      <input id="question-3-yes" type="radio" value="yes" name="answer-three"/>
+                      <label for="question-3-yes">Yes</label>
+                      <input id="question-3-no" type="radio" value="no" name="answer-three"/>
+                      <label for="question-3-no" class="negative">No</label>
+                    </div>
+                  </fieldset>
+                </div>
 
-            </section>
-            <p>By submitting this form, you are consenting to EveryDoctor using your anonymised responses to lobby the UK government and health authorities, and to raise the profile about issues facing the NHS. You can unsubscribe at any time by texting back STOP.
-            </p>
-            <p>Thank you so much.</p>
-            <button>Submit</button>
-          </form>
-        </div>
-      </article>
-    </section>
-    <footer class="wide theme">
-      {% include 'partials/footer.njk' %}
-    </footer>
-  </main>
-  {% include 'partials/global-js.njk' %}
-  <script src="/js/auto-complete.js"></script>
-  <script>
-    const specialties = [{% for specialty in specialties %}"{{specialty}}",{% endfor %}]
-    const hospitals = [{% for hospital in hospitals %}"{{hospital}}",{% endfor %}]
-  </script>
-  <script src="/js/onboarding-form.js "></script>
-</body>
+              </section>
+
+              <p>We need to know where you work and what you do, so we can pinpoint problems across the NHS.</p>
+
+              <section class="questions" id="medical-details">
+                <label for="hospital">Your local NHS Trust or CCG</label>
+                <input type="text" id="hospital" name="hospital" data-parent="medical-details"/>
+                <div id="care-container">
+                  <label for="care">You mostly work in</label>
+                  <div class="styled-select" id="styled-select-care">
+                    <select id="care" name="care" data-parent="care-container">
+                      <option value="" selected="selected">Please select</option>
+                      {% for care in cares %}
+                        <option value="{{care}}">{{care}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div id="grade-container">
+                  <label for="grade">Your grade</label>
+                  <div class="styled-select" id="styled-select-grade">
+                    <select id="grade" name="grade" data-parent="grade-container">
+                      <option value="" selected="selected">Please select</option>
+                      {% for grade in grades %}
+                        <option value="{{grade}}">{{grade}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div id="specialty-container">
+                  <label for="specialty">Your specialty</label>
+                  <input type="text" id="specialty" name="specialty" data-parent="specialty-container"/>
+                </div>
+
+              </section>
+              <p>By submitting this form, you are consenting to EveryDoctor using your anonymised responses to lobby the UK government and health authorities, and to raise the profile about issues facing the NHS. You can unsubscribe at any time by texting back STOP.
+              </p>
+              <p>Thank you so much.</p>
+              <button>Submit</button>
+            </form>
+          </div>
+        </article>
+      </section>
+      <footer class="wide theme">
+        {% include 'partials/footer.njk' %}
+      </footer>
+    </main>
+    {% include 'partials/global-js.njk' %}
+    <script src="/js/auto-complete.js"></script>
+    <script>
+      const specialties = [{% for specialty in specialties %}"{{specialty}}",{% endfor %}]
+      const hospitals = [{% for hospital in hospitals %}"{{hospital}}",{% endfor %}]
+    </script>
+    <script src="/js/onboarding-form.js "></script>
+  </body>
 
 </html>

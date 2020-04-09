@@ -1,7 +1,7 @@
 module.exports = [
-  "Primary care",
+  "GP",
   "Outpatient",
   "Community",
-  "Secondary care",
-  "Pre-hospital critical care"
+  "Hospital",
+  "Pre-hospital"
 ]
