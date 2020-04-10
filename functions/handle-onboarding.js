@@ -141,6 +141,7 @@ app.post(
       hospital: req.body.hospital,
       grade: req.body.grade,
       specialty: req.body.specialty,
+      care: req.body.care,
     }
 
     const documents = {
