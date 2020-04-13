@@ -1,9 +1,10 @@
-const db = require("./helpers/database")
+const { db } = require("./helpers/database")
 const createHash = require("./helpers/crypto")
 const app = require("./helpers/express")
 const serverless = require("serverless-http")
 const upload = require("./helpers/upload")
-const twilio = require("./helpers/twilio")
+const { twilio } = require("./helpers/twilio")
+const { getEnglishDateString } = require("./helpers/time")
 const { body, validationResult, check } = require("express-validator")
 const {
   fieldRequired,
@@ -111,8 +112,9 @@ app.post(
     const identifibleHash = createHash(mobile, process.env.SALT_ONE)
     const anonymousHash = createHash(mobile, process.env.SALT_TWO)
 
-    const today = new Date()
-    const englishDateString = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`
+    const timestamp = Date.now() // make just day/month/year
+    
+    const englishDateString = getEnglishDateString()
 
     const todayBasedIdentifier = createHash(
       `${englishDateString}-${mobile}`,
@@ -123,6 +125,8 @@ app.post(
       _id: `user:${identifibleHash}`,
       mobile,
       ["gmc-number"]: req.body["gmc-number"],
+      timestamp,
+      readableDate: englishDateString
     }
 
     req.body["first-name"] && (user["first-name"] = req.body["first-name"])
@@ -133,7 +137,7 @@ app.post(
     const answerBlock = {
       _id: `answer:${todayBasedIdentifier}`,
       user: anonymousHash,
-      timestamp: Date.now(), // make just day/month/year
+      timestamp,
       readableDate: englishDateString,
       answerOne: req.body["answer-one"],
       answerTwo: req.body["answer-two"],

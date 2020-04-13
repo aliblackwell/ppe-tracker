@@ -9,3 +9,11 @@
 
 [context.production]
   command = "sed -i s/CONTEXT_PLACEHOLDER/${CONTEXT}/g ./functions/helpers/inject-context.js && npm run site:build"
+
+[context.dev]
+  command = "sed -i s/CONTEXT_PLACEHOLDER/${CONTEXT}/g ./functions/helpers/inject-context.js && npm run site:build"
+
+[[headers]]
+  for = "/launch-sms/*"
+  [headers.values]
+    Basic-Auth = "admin:somepassword"

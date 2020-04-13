@@ -7,4 +7,4 @@ const dbString = `https://${dbUser}:${dbPw}@${process.env.DB_HOST}`
 const cloudant = Cloudant(dbString)
 const db = cloudant.db.use(dbName)
 
-module.exports = db
+module.exports = {db}

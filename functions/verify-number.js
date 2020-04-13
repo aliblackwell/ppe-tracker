@@ -1,6 +1,6 @@
 const app = require("./helpers/express")
 const serverless = require("serverless-http")
-const twilio = require("./helpers/twilio")
+const { twilio } = require("./helpers/twilio")
 const upload = require("./helpers/upload")
 const { body, validationResult } = require("express-validator")
 const { fieldRequired } = require("./helpers/form-validators")
