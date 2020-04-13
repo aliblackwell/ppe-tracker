@@ -9,7 +9,7 @@ app.get("*", async (req, res, next) => {
   try {
     const englishDateString = getEnglishDateString()
     const todayBasedIdentifier = createHash(englishDateString, process.env.SALT_THREE)
-    const burstIdentifier = `tmailshot:${todayBasedIdentifier}`
+    const burstIdentifier = `sms-mailshot:${todayBasedIdentifier}`
 
     const smsBurst = {
       _id: burstIdentifier,
@@ -30,6 +30,7 @@ app.get("*", async (req, res, next) => {
 })
 
 app.get("*", async (req, res) => {
+  const englishDateString = getEnglishDateString()
   const docs = await db.partitionedList("user", { include_docs: true })
   const executions = []
   for (const doc of docs.rows) {
