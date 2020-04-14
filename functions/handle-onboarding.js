@@ -11,6 +11,7 @@ const {
   validateAnswer,
   formatMobile,
   gotSpecialty,
+  gotHospital,
   gotGrade,
   gotCare,
 } = require("./helpers/form-validators")
@@ -57,6 +58,7 @@ app.post(
     body("hospital", "Please ensure you choose from the list.")
       .not()
       .isEmpty()
+      .custom((hospital) => gotHospital(hospital))
       .withMessage("Please ensure you choose from the list."),
 
     body("grade", "Please ensure you choose from the list.")

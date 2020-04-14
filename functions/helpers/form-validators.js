@@ -19,7 +19,14 @@ function fieldRequired(field) {
   return body(field).not().isEmpty().withMessage("This field is required.")
 }
 
-const gotHospital = (hospital) => hospitals.includes(hospital)
+const shortenHospital = (hospital) => hospital.replace(/\s/g, '').replace("'","").toLowerCase()
+
+const gotHospital = (hospital) => {
+  const shortenedHospitals = hospitals.map(shortenHospital)
+  const shortenedHospital = shortenHospital(hospital)
+  return shortenedHospitals.includes(shortenedHospital)
+}
+
 const gotSpecialty = (specialty) => specialties.includes(specialty)
 const gotGrade = (grade) => grades.includes(grade)
 const gotCare = (care) => cares.includes(care)
