@@ -19,7 +19,7 @@ function fieldRequired(field) {
   return body(field).not().isEmpty().withMessage("This field is required.")
 }
 
-const shortenHospital = (hospital) => hospital.replace(/\s/g, '').replace("'","").toLowerCase()
+const shortenHospital = (hospital) => hospital.replace(".", "").replace(/\s/g, "").replace("'", "").toLowerCase()
 
 const gotHospital = (hospital) => {
   const shortenedHospitals = hospitals.map(shortenHospital)
@@ -38,5 +38,5 @@ module.exports = {
   gotSpecialty,
   gotGrade,
   gotHospital,
-  gotCare
+  gotCare,
 }

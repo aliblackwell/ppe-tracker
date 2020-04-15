@@ -193,7 +193,7 @@ module.exports = [
   "The Newcastle Upon Tyne Hospitals NHS Foundation Trust",
   "The Princess Alexandra Hospital NHS Trust",
   "The Queen Elizabeth Hospital",
-  "King's Lynn. NHS Foundation Trust",
+  "King's Lynn NHS Foundation Trust",
   "The Rotherham NHS Foundation Trust",
   "The Royal Bournemouth and Christchurch Hospitals NHS Foundation Trust",
   "The Royal Marsden NHS Foundation Trust",
