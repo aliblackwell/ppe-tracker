@@ -1,6 +1,6 @@
 ---
 title: Take part
-layout: layouts/home.njk 
+layout: layouts/holding.njk 
 language: 'en'
 permalink: '/'
 dir: 'ltr'
