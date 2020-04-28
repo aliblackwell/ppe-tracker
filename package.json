@@ -21,6 +21,7 @@
   "scripts": {
     "test": "mocha",
     "create-csv": "dotenv -- cross-var node ./scripts/get-all.js",
+    "text-all":"dotenv -- cross-var node ./scripts/text-all.js",
     "sms": "dotenv -- cross-var curl -X POST 'https://studio.twilio.com/v1/Flows/FW59453b108e162b67670f945a2be74dca/Executions' --data-urlencode 'To=+447719443470' --data-urlencode 'From=MG70630c15fca9e6908577daf2e168bcdb' -u %TWILIO_SID%:%TWILIO_AUTH_TOKEN%",
     "cloudant": "dotenv -- cross-var node ./cloudant-test.js",
     "start": "dotenv -- cross-var netlify dev",
