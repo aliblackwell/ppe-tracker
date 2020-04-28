@@ -42,4 +42,4 @@ Open the project in a text editor and create a file called .env. Paste in the co
 
 This will run the script in scripts/text-all.js that looks in the database using the live username and password in your .env file and then connects to Twilio for each person and triggers a flow.
 
-
+You can watch [the Twilio logs](https://www.twilio.com/console/studio/flows/FW29a06218204b8af552d00119ca02de35/executions) while it runs.
