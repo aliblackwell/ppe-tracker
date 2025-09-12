@@ -16,7 +16,7 @@
     "netlify-cli": "^2.40.0",
     "netlify-lambda": "^1.6.3",
     "serverless-http": "^2.3.2",
-    "twilio": "^3.42.0"
+    "twilio": "^5.9.0"
   },
   "scripts": {
     "test": "mocha",
@@ -35,7 +35,7 @@
     "tests": "./tests"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.10.0",
+    "@11ty/eleventy": "^3.1.2",
     "@11ty/eleventy-navigation": "^0.1.5",
     "cross-var": "^1.1.0",
     "dotenv-cli": "^3.1.0",
